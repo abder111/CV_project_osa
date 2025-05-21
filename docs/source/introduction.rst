@@ -1,18 +1,57 @@
-Introduction
-============
+Introduction au Système de Détection On-Shelf Availability (OSA)
+==================================================================
 
-Le projet **On-Shelf Availability** (OSA) vise à développer une solution intelligente de surveillance des rayons de supermarchés à l’aide de la vision par ordinateur.
+Le système de détection **On-Shelf Availability (OSA)** est une solution de vision par ordinateur conçue pour identifier automatiquement les espaces vides sur les rayons, détecter les étagères et reconnaître les produits présents. Cette solution permet aux détaillants d'optimiser la gestion des stocks, d'améliorer l'expérience client et de maximiser les ventes en assurant une disponibilité optimale des produits.
 
-L'objectif est de détecter automatiquement la disponibilité des produits en rayon et de signaler les vides (zones où un produit devrait être présent mais est manquant). Cette solution permet d'améliorer la gestion des stocks, la satisfaction client et l'efficacité des réapprovisionnements.
+Objectifs du Système
+--------------------
 
-Nous utilisons des modèles de détection d’objets (YOLO, Faster R-CNN, etc.) pour identifier :
-- les emplacements vides dans les rayons (zones sans produit),
-- et les produits spécifiques (par exemple, 10 références connues).
+Le système a pour objectifs :
 
-Les images sont capturées à intervalles réguliers, analysées par notre modèle d’intelligence artificielle, puis les résultats sont présentés sous forme de visualisations (bounding boxes, pourcentage de vide, etc.).
+- Détecter les espaces vides sur les étagères
+- Identifier et localiser les étagères dans l'environnement commercial
+- Reconnaître les produits présents sur les rayons
+- Détecter les produits individuels pour une gestion précise des stocks
+- Générer des rapports sur l'état des stocks en temps réel
+- Alerter le personnel en cas de rupture de stock
 
-Ce projet s'inscrit dans le cadre d'une initiative d'optimisation de la chaîne d'approvisionnement, en s’appuyant sur des technologies modernes comme :
-- Python et OpenCV pour le traitement d’image,
-- des frameworks d'apprentissage profond (YOLOv5, PyTorch, TensorFlow),
-- et Read the Docs pour la documentation technique.
+Cas d'Utilisation
+-----------------
 
+Voici les cas d'utilisation principaux du système :
+
+- **Surveillance continue des rayons en magasin** : Monitoring en temps réel de l'état des rayons pour assurer une disponibilité optimale des produits
+- **Audit de merchandising** : Évaluation précise du placement et de la présentation des produits
+- **Optimisation de la chaîne d'approvisionnement** : Anticipation des besoins de réapprovisionnement pour éviter les ruptures de stock
+- **Analyse des performances commerciales** : Génération de données exploitables pour améliorer les stratégies de vente
+
+Notre Équipe
+------------
+
+Ce projet a été réalisé par une équipe d'étudiants motivés, encadrée par un enseignant expert dans le domaine de l'intelligence artificielle appliquée.
+
+**Membres de l'équipe**
+
+- Es-safi Abderrahman – *AI and Data Technologies Engineering student*  
+  `LinkedIn <https://www.linkedin.com>`_
+
+- Faris Amine – *AI and Data Technologies Engineering student*  
+  `LinkedIn <https://www.linkedin.com>`_
+
+**Encadrant du projet**
+
+- Pr. Tawfik Masrour – *Professor, expert IA*  
+  `LinkedIn <https://www.linkedin.com>`_
+
+Avantages et Impact
+-------------------
+
+L'implémentation de notre système OSA offre de nombreux avantages pour les commerces de détail :
+
+- Réduction des pertes de ventes dues aux ruptures de stock
+- Amélioration de l'expérience client grâce à une meilleure disponibilité des produits
+- Optimisation des processus de réapprovisionnement
+- Insights précieux sur les tendances de consommation
+- Meilleure allocation des ressources humaines et matérielles
+
+Notre solution s'intègre facilement dans l'infrastructure existante et offre un retour sur investissement rapide grâce à l'augmentation des ventes et à la réduction des coûts opérationnels.
