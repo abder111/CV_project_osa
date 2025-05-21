@@ -6,10 +6,6 @@ Bienvenue dans la documentation de Mon Projet !
    :caption: Sommaire
 
    introduction
-   equipe
-   objectifs
-   cas_utilisation
-   architecture
    modeles
    train_models_results
    guide_utilisation
