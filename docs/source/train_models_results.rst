@@ -16,11 +16,12 @@ Comparaison des architectures
 
 Nous avons évalué plusieurs approches pour la détection des espaces vides :
 
-1. YOLOv8 avec le dataset Marjan original
-2. YOLOv8 avec augmentation de données
-3. Transfer Learning à partir du modèle augmenté
-4. YOLOv11 (meilleure performance)
-5. DETR (approche transformer)
+1. YOLOv8 avec le dataset Marjan original 200 images 
+2. YOLOv8 avec augmentation de données 600 images 
+3. Transfer Learning à partir du modèle YOLOv8 avec dataset augmenté avec une dataset de 2300 images via kaggle
+4. YOLOv8 avec augmentation de données avec une dataset via Roboflow de 3000 images  
+5. YOLOv11 
+6. DETR (approche transformer)
 
 YOLOv8 - Dataset Original
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -87,7 +88,25 @@ YOLOv8 - Transfer Learning
 
 **Analyse** : Le transfer learning n'a pas donné de bons résultats, probablement en raison d'un surapprentissage sur le dataset source.
 
-YOLOv11 - Meilleure Performance
+YOLOv8 - Augmented Dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Performance - augmentation
+   :widths: 25 20 20 20 15
+   :header-rows: 1
+
+   * - Métrique
+     - mAP50
+     - mAP50-95
+     - Précision
+     - Rappel
+   * - Global
+     - 0.59
+     - 0.28
+     - 0.58
+     - 0.51
+
+YOLOv11 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Performance YOLOv11
@@ -99,24 +118,12 @@ YOLOv11 - Meilleure Performance
      - mAP50-95
      - Précision
      - Rappel
-     - Inférence (ms)
    * - Global
      - 0.943
      - 0.867
      - 0.921
      - 0.935
-     - 14.1
-   * - Classe "vide"
-     - 0.958
-     - 0.878
-     - 0.938
-     - 0.942
-     - -
 
-**Avantages** :
-- Meilleur équilibre précision/performance
-- Architecture optimisée pour les petits objets
-- Bonne généralisation
 
 DETR - Approche Transformer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -130,13 +137,11 @@ DETR - Approche Transformer
      - mAP50-95
      - Précision
      - Rappel
-     - Inférence (ms)
    * - Global
      - 0.908
      - 0.835
      - 0.883
      - 0.897
-     - 32.5
 
 **Analyse comparative** :
 
@@ -147,8 +152,7 @@ DETR - Approche Transformer
    * - Architecture
      - mAP50
      - mAP50-95
-     - Inférence (ms)
-     - Taille (MB)
+     - 
    * - YOLOv8 (original)
      - 0.65
      - 0.38
