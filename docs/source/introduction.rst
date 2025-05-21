@@ -164,3 +164,4 @@ Le système OSA s'appuie sur un ensemble de technologies de pointe pour offrir d
 - **Stockage** : PostgreSQL, Redis
 
 Ces technologies ont été sélectionnées pour leur robustesse, leur capacité à traiter des données en temps réel et leur facilité d'intégration dans des environnements commerciaux existants.
+ 
