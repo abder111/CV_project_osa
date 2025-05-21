@@ -1,60 +1,87 @@
-Guide Utilisateur Simple
-=========================
+Guide d’Utilisation du Système de Détection
+===========================================
 
-Ce guide explique comment utiliser le système de détection sans installation locale compliquée. L'utilisateur peut directement lancer le notebook fourni et télécharger les modèles à partir du dépôt GitHub.
+Ce guide explique comment utiliser ce projet via les notebooks fournis, en téléchargeant les modèles et fichiers nécessaires depuis Google Drive.
+
+Aucune installation locale n’est requise : vous pouvez tout exécuter via **Google Colab**.
 
 Prérequis
 ---------
 
-- Un navigateur web
-- Accès à Google Colab **ou** Jupyter Notebook installé localement
+- Navigateur web
+- Connexion Internet
+- Un compte Google pour utiliser Google Colab
 
-Étapes
-------
+Étapes d’Utilisation
+--------------------
 
-1. **Ouvrir le Notebook**
+1. **Accéder au Dossier Google Drive**
 
-   - Lien vers le notebook dans le dépôt GitHub :
-     
-     https://github.com/abder111/CV_project_osa/notebooks/CV_project_marjan.ipynb
+   Cliquez sur le lien suivant pour accéder au dossier contenant les fichiers du projet :
 
-   - Pour l’ouvrir dans Google Colab :
-     
-     Remplacez `github.com` par `colab.research.google.com/github`, par exemple :
+   `https://drive.google.com/drive/folders/1Sfbmq9lNk3rqeiNyVtmlr4JQEQc-q2sN?usp=drive_link`
 
-     https://colab.research.google.com/github.com/abder111/CV_project_osa/notebooks/CV_project_marjan.ipynb
+   Ce dossier contient :
 
-2. **Télécharger les modèles préentraînés**
+   - `CV_project_marjan.ipynb` (notebook principal)
+   - `shelf.pt`, `void.pt`, `products.pt`, `individual_products.pt` (modèles préentraînés)
 
-   - Le notebook contient déjà des cellules pour télécharger les fichiers suivants depuis GitHub :
+2. **Ouvrir le Notebook dans Google Colab**
 
-     - `models/shelf.pt`
-     - `models/void.pt`
-     - `models/products.pt`
-     - `models/individual_products.pt`
+   - Une fois ouvert, vous pouvez exécuter les cellules une par une.
 
-   - Les cellules utilisent des commandes `wget` ou `gdown` pour automatiser le téléchargement.
+3. **Monter Google Drive dans le Notebook**
 
-3. **Lancer les cellules une à une**
+   Dès les premières cellules, vous serez invité à **monter votre Drive** pour accéder aux modèles :
 
-   - Exécutez chaque cellule dans l’ordre pour effectuer :
+   .. code-block:: python
 
-     - Le chargement des modèles
-     - Le traitement d’une image
-     - L'affichage des résultats
+       from google.colab import drive
+       drive.mount('/content/drive')
 
+   Ensuite, utilisez les chemins vers vos fichiers (par exemple) :
 
+   .. code-block:: python
 
+       MODEL_PATH = "/content/drive/MyDrive/mon_projet/models/shelf.pt"
 
-Résultat Attendu
-----------------
+4. **Lancer la Détection**
 
-- Des images annotées affichées dans le notebook
-- Des rapports optionnels en format texte ou JSON
+   Les cellules du notebook permettent de :
+
+   - Charger les modèles (`.pt`)
+   - Importer des images
+   - Appliquer la détection (étagères, vides, produits)
+   - Visualiser les résultats directement dans le notebook
+
+Organisation Typique
+--------------------
+
+::
+
+    Mon Drive/
+    └── CV_project/
+        ├── detection.ipynb
+        ├── models/
+        │   ├── shelf.pt
+        │   ├── void.pt
+        │   ├── products.pt
+        │   └── individual_products.pt
+        └── images/
+            └── exemple.jpg
+
+Résultats
+---------
+
+Les résultats sont affichés automatiquement dans le notebook. Vous pouvez aussi enregistrer les images annotées avec :
+
+.. code-block:: python
+
+    cv2.imwrite("output.jpg", annotated_image)
 
 Support
 -------
 
-- Pour tout problème, ouvrez une "issue" sur le dépôt GitHub :
-  
-  https://github.com/ton-utilisateur/ton-projet/issues
+- Pour toute question, me contactez abderrahmanessafi133@gamil.com .
+
+
