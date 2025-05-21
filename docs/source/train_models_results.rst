@@ -50,7 +50,7 @@ YOLOv8 - Dataset Original
 
    Matrice de confusion YOLOv8 pour la détection des espaces vides
 
-.. figure:: _static/void_yolov8_pr_curve.png
+.. figure:: _static/void_1.png
    :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
