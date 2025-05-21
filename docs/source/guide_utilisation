@@ -1,0 +1,60 @@
+Guide Utilisateur Simple
+=========================
+
+Ce guide explique comment utiliser le système de détection sans installation locale compliquée. L'utilisateur peut directement lancer le notebook fourni et télécharger les modèles à partir du dépôt GitHub.
+
+Prérequis
+---------
+
+- Un navigateur web
+- Accès à Google Colab **ou** Jupyter Notebook installé localement
+
+Étapes
+------
+
+1. **Ouvrir le Notebook**
+
+   - Lien vers le notebook dans le dépôt GitHub :
+     
+     https://github.com/abder111/CV_project_osa/notebooks/CV_project_marjan.ipynb
+
+   - Pour l’ouvrir dans Google Colab :
+     
+     Remplacez `github.com` par `colab.research.google.com/github`, par exemple :
+
+     https://colab.research.google.com/github.com/abder111/CV_project_osa/notebooks/CV_project_marjan.ipynb
+
+2. **Télécharger les modèles préentraînés**
+
+   - Le notebook contient déjà des cellules pour télécharger les fichiers suivants depuis GitHub :
+
+     - `models/shelf.pt`
+     - `models/void.pt`
+     - `models/products.pt`
+     - `models/individual_products.pt`
+
+   - Les cellules utilisent des commandes `wget` ou `gdown` pour automatiser le téléchargement.
+
+3. **Lancer les cellules une à une**
+
+   - Exécutez chaque cellule dans l’ordre pour effectuer :
+
+     - Le chargement des modèles
+     - Le traitement d’une image
+     - L'affichage des résultats
+
+
+
+
+Résultat Attendu
+----------------
+
+- Des images annotées affichées dans le notebook
+- Des rapports optionnels en format texte ou JSON
+
+Support
+-------
+
+- Pour tout problème, ouvrez une "issue" sur le dépôt GitHub :
+  
+  https://github.com/ton-utilisateur/ton-projet/issues
