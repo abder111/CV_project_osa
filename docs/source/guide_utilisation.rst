@@ -19,7 +19,7 @@ Prérequis
 
    Cliquez sur le lien suivant pour accéder au dossier contenant les fichiers du projet :
 
-   `https://drive.google.com/drive/folders/1Sfbmq9lNk3rqeiNyVtmlr4JQEQc-q2sN?usp=drive_link`
+   `Accéder au dossier Google Drive <https://drive.google.com/drive/folders/1Sfbmq9lNk3rqeiNyVtmlr4JQEQc-q2sN?usp=drive_link>`_
 
    Ce dossier contient :
 
