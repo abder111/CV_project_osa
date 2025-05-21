@@ -1,18 +1,6 @@
-Système de Détection On-Shelf Availability (OSA)
+Introduction
 =================================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contenu:
-
-   introduction
-   objectifs
-   architecture
-   cas_utilisation
-   equipe
-
-Introduction
-------------
 
 Le système de détection On-Shelf Availability (OSA) est une solution avancée de vision par ordinateur conçue pour identifier automatiquement les espaces vides sur les rayons, détecter les étagères et reconnaître les produits présents dans un environnement commercial.
 
