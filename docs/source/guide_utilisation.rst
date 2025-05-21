@@ -60,7 +60,7 @@ Organisation Typique
 ::
 
     Mon Drive/
-    └── CV_project/
+    └── CV_project_marjan/
         ├── detection.ipynb
         ├── models/
         │   ├── shelf.pt
