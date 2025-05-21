@@ -11,4 +11,5 @@ Bienvenue dans la documentation de Mon Projet !
    cas_utilisation
    architecture
    modeles
+   guide_utilisation
    
