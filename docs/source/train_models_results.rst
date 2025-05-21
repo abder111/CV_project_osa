@@ -43,6 +43,20 @@ YOLOv8 - Dataset Original
 
 **Augmentations appliquées** : Aucune
 
+.. figure:: _static/void_yolov8_confusion_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/void_yolov8_pr_curve.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+
 YOLOv8 - Dataset Augmenté
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
