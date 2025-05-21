@@ -16,7 +16,7 @@ Comparaison des architectures
 
 Notre modèle de détection des espaces vides a été entraîné avec différentes architectures pour déterminer la plus performante.
 
-YOLOv8
+YOLOv8 : Avec Marjan Dataset
 ^^^^^^
 
 .. list-table:: Résultats YOLOv8 - Détection des espaces vides
@@ -28,19 +28,14 @@ YOLOv8
      - Valeur (mAP50-95)
      - Précision
      - Rappel
-     - Temps d'inférence (ms)
+
    * - Performance globale
-     - 0.921
-     - 0.843
-     - 0.897
-     - 0.912
-     - 12.3
-   * - Classes: "vide"
-     - 0.934
-     - 0.852
-     - 0.915
-     - 0.923
-     - -
+     - 0.65
+     - 0.38
+     - 0.76
+     - 0.64
+     
+  
 
 .. figure:: _static/void_yolov8_confusion_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
@@ -63,36 +58,164 @@ YOLOv8
    task: detect
    model: yolov8n.pt
    data: voids_dataset.yaml
-   epochs: 100
+   epochs: 50
    imgsz: 640
    batch: 16
    optimizer: SGD
    lr0: 0.01
    lrf: 0.01
-   momentum: 0.937
-   weight_decay: 0.0005
-   warmup_epochs: 3.0
-   warmup_momentum: 0.8
-   warmup_bias_lr: 0.1
-   box: 7.5
-   cls: 0.5
-   dfl: 1.5
-   fl_gamma: 0.0
-   label_smoothing: 0.0
-   nbs: 64
-   hsv_h: 0.015
-   hsv_s: 0.7
-   hsv_v: 0.4
-   degrees: 0.0
-   translate: 0.1
-   scale: 0.5
-   shear: 0.0
-   perspective: 0.0
-   flipud: 0.0
-   fliplr: 0.5
-   mosaic: 1.0
-   mixup: 0.0
-   copy_paste: 0.0
+  
+YOLOv8 : Avec Marjan Dataset Augmented
+^^^^^^
+    - 50% probability of horizontal flip
+    - Randomly crop between 0 and 16 percent of the image
+    -Random rotation of between -14 and +14 degrees
+    - Random brigthness adjustment of between -25  and +25 percent
+    - Random Gaussian blur of between 0 and 0.7 pixels
+
+.. list-table:: Résultats YOLOv8 - Détection des espaces vides
+   :widths: 20 15 15 15 15 20
+   :header-rows: 1
+
+   * - Métrique
+     - Valeur (mAP50)
+     - Valeur (mAP50-95)
+     - Précision
+     - Rappel
+
+   * - Performance globale
+     - 0.66
+     - 0.35
+     - 0.79
+     - 0.70
+     
+  
+
+.. figure:: _static/void_yolov8_confusion_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/void_yolov8_pr_curve.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+
+**Paramètres d'entraînement:**
+
+.. code-block:: yaml
+
+   task: detect
+   model: yolov8n.pt
+   data: voids_dataset.yaml
+   epochs: 50
+   imgsz: 640
+   batch: 16
+   optimizer: SGD
+   lr0: 0.01
+   lrf: 0.01
+
+YOLOv8 : Transfer Learning Avec model de Marjan augmented Dataset 
+^^^^^^
+
+.. list-table:: Résultats YOLOv8 - Détection des espaces vides
+   :widths: 20 15 15 15 15 20
+   :header-rows: 1
+
+   * - Métrique
+     - Valeur (mAP50)
+     - Valeur (mAP50-95)
+     - Précision
+     - Rappel
+
+   * - Performance globale
+     - 0.59
+     - 0.28
+     - 0.58
+     - 0.51
+     
+  
+
+.. figure:: _static/void_yolov8_confusion_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/void_yolov8_pr_curve.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+
+**Paramètres d'entraînement:**
+
+.. code-block:: yaml
+
+   task: detect
+   model: yolov8n.pt
+   data: voids_dataset.yaml
+   epochs: 30
+   imgsz: 640
+   batch: 16
+   optimizer: SGD
+   lr0: 0.01
+   lrf: 0.01
+
+YOLOv8 : Avec Marjan Dataset
+^^^^^^
+
+.. list-table:: Résultats YOLOv8 - Détection des espaces vides
+   :widths: 20 15 15 15 15 20
+   :header-rows: 1
+
+   * - Métrique
+     - Valeur (mAP50)
+     - Valeur (mAP50-95)
+     - Précision
+     - Rappel
+
+   * - Performance globale
+     - 0.70
+     - 0.36
+     - 0.74
+     - 0.65
+     
+  
+
+.. figure:: _static/void_yolov8_confusion_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/void_yolov8_pr_curve.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+
+**Paramètres d'entraînement:**
+
+.. code-block:: yaml
+
+   task: detect
+   model: yolov8n.pt
+   data: voids_dataset.yaml
+   epochs: 50
+   imgsz: 640
+   batch: 16
+   optimizer: SGD
+   lr0: 0.01
+   lrf: 0.01
 
 YOLOv11
 ^^^^^^^
