@@ -11,5 +11,6 @@ Bienvenue dans la documentation de Mon Projet !
    cas_utilisation
    architecture
    modeles
+   train_models_results
    guide_utilisation
    
