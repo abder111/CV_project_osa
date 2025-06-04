@@ -89,7 +89,7 @@ YOLOv8 - Dataset Augmenté
 
    Matrice de confusion YOLOv8 pour la détection des espaces vides
 
-.. figure:: _static/images/void/void_3_results.png
+.. figure:: _static/images/void/void_2_results.png
    :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
@@ -116,14 +116,14 @@ Using kaggle dataset
 
 **Analyse** : Le transfer learning n'a pas donné de bons résultats, probablement en raison d'un surapprentissage sur le dataset source.
 
-.. figure:: _static/images/void/void_3_matrix.png
+.. figure:: _static/images/void/void_3_tf_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
    Matrice de confusion YOLOv8 pour la détection des espaces vides
 
-.. figure:: _static/images/void/void_3_results.png
+.. figure:: _static/images/void/void_3_tf_results.png
    :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
@@ -148,7 +148,7 @@ YOLOv8 - Augmented Dataset
      - 0.712
      - 0.665
 
-.. figure:: _static/images/void/void_4_Matrix.png
+.. figure:: _static/images/void/void_4_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
