@@ -36,10 +36,10 @@ YOLOv8 - Dataset Original
      - Précision
      - Rappel
    * - Global
-     - 0.65
-     - 0.38
-     - 0.76
-     - 0.64
+     - 0.743
+     - 0.359
+     - 0.832
+     - 0.635
 
 **Augmentations appliquées** : Aucune
 
@@ -70,10 +70,10 @@ YOLOv8 - Dataset Augmenté
      - Précision
      - Rappel
    * - Global
-     - 0.66 (+1.5%)
-     - 0.35
-     - 0.79
-     - 0.70
+     - 0.723
+     - 0.366
+     - 0.695
+     - 0.695
 
 **Augmentations appliquées** :
 - 50% probabilité de flip horizontal
@@ -84,7 +84,7 @@ YOLOv8 - Dataset Augmenté
 
 YOLOv8 - Transfer Learning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+Using kaggle dataset
 .. list-table:: Performance Transfer Learning
    :widths: 25 20 20 20 15
    :header-rows: 1
@@ -95,10 +95,10 @@ YOLOv8 - Transfer Learning
      - Précision
      - Rappel
    * - Global
-     - 0.59
-     - 0.28
-     - 0.58
-     - 0.51
+     - 0.62
+     - 0.301
+     - 0.644
+     - 0.551
 
 **Analyse** : Le transfer learning n'a pas donné de bons résultats, probablement en raison d'un surapprentissage sur le dataset source.
 
@@ -115,10 +115,10 @@ YOLOv8 - Augmented Dataset
      - Précision
      - Rappel
    * - Global
-     - 0.59
-     - 0.28
-     - 0.58
-     - 0.51
+     - 0.708
+     - 0.376
+     - 0.712
+     - 0.665
 
 YOLOv11 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
