@@ -175,7 +175,7 @@ YOLOv8 - New Dataset + marjan Dataset
      - Précision
      - Rappel
    * - Global
-     - 0.0.9544
+     - 0.9544
      - 0.66
      - 0.932
      - 0.91
