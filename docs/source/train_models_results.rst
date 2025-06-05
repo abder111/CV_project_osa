@@ -162,11 +162,11 @@ YOLOv8 - Augmented Dataset
 
    Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv11 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+YOLOv8 - New Dataset + marjan Dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv11
-   :widths: 25 20 20 20 15 20
+.. list-table:: Performance - augmentation
+   :widths: 25 20 20 20 15
    :header-rows: 1
 
    * - Métrique
@@ -175,11 +175,92 @@ YOLOv11
      - Précision
      - Rappel
    * - Global
-     - 0.943
-     - 0.867
-     - 0.921
-     - 0.935
+     - 0.0.9544
+     - 0.66
+     - 0.932
+     - 0.91
 
+.. figure:: _static/images/void/void_5_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/images/void/void_5_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
+
+YOLOv11 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Performance YOLOv11 - Dataset Original
+   :widths: 25 20 20 20 15
+   :header-rows: 1
+
+   * - Métrique
+     - mAP50
+     - mAP50-95
+     - Précision
+     - Rappel
+   * - Global
+     - 0.73
+     - 0.374
+     - 0.736
+     - 0.679
+
+**Augmentations appliquées** : Aucune
+
+.. figure:: _static/images/void/void1_yolo11_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/images/void/void1_yolo11_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+
+YOLOv11 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Performance YOLOv11 - Dataset Original
+   :widths: 25 20 20 20 15
+   :header-rows: 1
+
+   * - Métrique
+     - mAP50
+     - mAP50-95
+     - Précision
+     - Rappel
+   * - Global
+     - 0.918
+     - 0.561
+     - 0.871
+     - 0.865
+
+**Augmentations appliquées** : New Dataset + Marjan
+
+.. figure:: _static/images/void/void2_yolo11_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
+
+.. figure:: _static/images/void/void2_yolo11_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
 
 DETR - Approche Transformer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -194,10 +275,10 @@ DETR - Approche Transformer
      - Précision
      - Rappel
    * - Global
-     - 0.908
-     - 0.835
-     - 0.883
-     - 0.897
+     - 0.
+     - 0.
+     - 0.
+     - 0.
 
 **Analyse comparative** :
 
