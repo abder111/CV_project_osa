@@ -338,10 +338,10 @@ YOLOv8 - Performance Optimale
      - Précision
      - Rappel
    * - Global
-     - 0.953
-     - 0.876
-     - 0.942
-     - 0.961
+     - 0.815
+     - 0.595
+     - 0.81
+     - 0.80
 
 .. figure:: _static/images/shelf/shelf_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
@@ -358,8 +358,8 @@ YOLOv8 - Performance Optimale
    Les Courbe  d'entrenement YOLOv8 pour la détection des shelves.
 
 **Paramètres clés** :
-- Modèle: YOLOv8m
-- Epochs: 150
+- Modèle: YOLOvm
+- Epochs: 100
 - Taille image: 640x640
 - Batch size: 16
 - Learning rate: 0.01 avec SGD
@@ -367,71 +367,23 @@ YOLOv8 - Performance Optimale
 Détection des produits (products.pt)
 ===================================
 
-Performance Globale
+Les produits utilitsee : oil,milk,water,eggs,raibi
 ^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance globale
-   :widths: 25 20 20 20 15
-   :header-rows: 1
+.. figure:: _static/images/products/products_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
 
-   * - Métrique
-     - mAP50
-     - mAP50-95
-     - Précision
-     - Rappel
-   * - Global (125 classes)
-     - 0.917
-     - 0.836
-     - 0.903
-     - 0.924
+   Matrice de confusion YOLOv8 pour la détection des produits
 
-Top Performances par Classe
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. figure:: _static/images/products/products_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
 
-.. list-table:: Top 10 classes
-   :widths: 40 15 15 15
-   :header-rows: 1
+   Les Courbe  d'entrenement YOLOv8 pour la détection des produits.
 
-   * - Produit
-     - mAP50
-     - Précision
-     - Rappel
-   * - Canette de soda
-     - 0.978
-     - 0.965
-     - 0.982
-   * - Boîte de céréales
-     - 0.967
-     - 0.953
-     - 0.971
-   * - Eau en bouteille 1L
-     - 0.962
-     - 0.947
-     - 0.968
-
-Classes à Améliorer
-^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: 10 classes problématiques
-   :widths: 40 15 15 15
-   :header-rows: 1
-
-   * - Produit
-     - mAP50
-     - Précision
-     - Rappel
-   * - Piles AAA
-     - 0.872
-     - 0.853
-     - 0.883
-   * - Ampoule LED
-     - 0.875
-     - 0.858
-     - 0.886
-   * - Dentifrice
-     - 0.881
-     - 0.862
-     - 0.891
 
 **Recommandations** :
 - Augmenter les données d'entraînement pour les petits objets
