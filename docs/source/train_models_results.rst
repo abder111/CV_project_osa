@@ -275,10 +275,10 @@ DETR - Approche Transformer
      - Précision
      - Rappel
    * - Global
-     - 0.
-     - 0.
-     - 0.
-     - 0.
+     - 0.94
+     - 
+     - 
+     - 
 
 **Analyse comparative** :
 
