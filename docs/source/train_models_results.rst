@@ -16,10 +16,10 @@ Comparaison des architectures
 
 Nous avons évalué plusieurs approches pour la détection des espaces vides :
 
-1. YOLOv8 avec le dataset Marjan original (200 images)
-2. YOLOv8 avec augmentation de données (600 images)
-3. Transfer Learning à partir du modèle YOLOv8 avec dataset augmenté (2300 images via Kaggle)
-4. YOLOv8 avec augmentation de données (3000 images via Roboflow)
+1. YOLOv8 avec le dataset Marjan original 200 images 
+2. YOLOv8 avec augmentation de données 600 images 
+3. Transfer Learning à partir du modèle YOLOv8 avec dataset augmenté avec une dataset de 2300 images via kaggle
+4. YOLOv8 avec augmentation de données avec une dataset via Roboflow de 3000 images  
 5. YOLOv11 
 6. DETR (approche transformer)
 
@@ -48,14 +48,14 @@ YOLOv8 - Dataset Original
    :width: 80%
    :align: center
 
-   Matrice de confusion pour la détection des espaces vides
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void_1_results.png
-   :alt: Courbes d'entraînement YOLOv8
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement YOLOv8 pour la détection des espaces vides
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
 
 YOLOv8 - Dataset Augmenté
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -76,29 +76,29 @@ YOLOv8 - Dataset Augmenté
      - 0.695
 
 **Augmentations appliquées** :
-- Flip horizontal (50% de probabilité)
+- 50% probabilité de flip horizontal
 - Recadrage aléatoire (0-16%)
 - Rotation (-14° à +14°)
 - Ajustement de luminosité (±25%)
 - Flou gaussien (0-0.7 pixels)
 
 .. figure:: _static/images/void/void_2_matrix.png
-   :alt: Matrice de confusion YOLOv8 augmenté
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour le dataset augmenté
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void_2_results.png
-   :alt: Courbes d'entraînement YOLOv8 augmenté
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour le dataset augmenté
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv8 - Transfer Learning (Kaggle)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+YOLOv8 - Transfer Learning
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using kaggle dataset
 .. list-table:: Performance Transfer Learning
    :widths: 25 20 20 20 15
    :header-rows: 1
@@ -117,23 +117,23 @@ YOLOv8 - Transfer Learning (Kaggle)
 **Analyse** : Le transfer learning n'a pas donné de bons résultats, probablement en raison d'un surapprentissage sur le dataset source.
 
 .. figure:: _static/images/void/void_3_tf_matrix.png
-   :alt: Matrice de confusion Transfer Learning
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour le transfer learning
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void_3_tf_results.png
-   :alt: Courbes d'entraînement Transfer Learning
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour le transfer learning
+   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv8 - Dataset Roboflow
-^^^^^^^^^^^^^^^^^^^^^^^^^
+YOLOv8 - Augmented Dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance - Dataset Roboflow
+.. list-table:: Performance - augmentation
    :widths: 25 20 20 20 15
    :header-rows: 1
 
@@ -149,23 +149,23 @@ YOLOv8 - Dataset Roboflow
      - 0.665
 
 .. figure:: _static/images/void/void_4_matrix.png
-   :alt: Matrice de confusion Roboflow
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour le dataset Roboflow
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void_4_results.png
-   :alt: Courbes d'entraînement Roboflow
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour le dataset Roboflow
+   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv8 - Dataset Combiné (Marjan + Nouveau)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+YOLOv8 - New Dataset + marjan Dataset
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance - Dataset Combiné
+.. list-table:: Performance - augmentation
    :widths: 25 20 20 20 15
    :header-rows: 1
 
@@ -181,23 +181,23 @@ YOLOv8 - Dataset Combiné (Marjan + Nouveau)
      - 0.91
 
 .. figure:: _static/images/void/void_5_matrix.png
-   :alt: Matrice de confusion Dataset Combiné
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour le dataset combiné
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void_5_results.png
-   :alt: Courbes d'entraînement Dataset Combiné
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour le dataset combiné
+   Les Courbe  des entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv11 - Dataset Original
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+YOLOv11 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv11
+.. list-table:: Performance YOLOv11 - Dataset Original
    :widths: 25 20 20 20 15
    :header-rows: 1
 
@@ -212,24 +212,26 @@ YOLOv11 - Dataset Original
      - 0.736
      - 0.679
 
+**Augmentations appliquées** : Aucune
+
 .. figure:: _static/images/void/void1_yolo11_matrix.png
-   :alt: Matrice de confusion YOLOv11
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv11
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void1_yolo11_results.png
-   :alt: Courbes d'entraînement YOLOv11
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement YOLOv11
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
 
-YOLOv11 - Dataset Combiné
-^^^^^^^^^^^^^^^^^^^^^^^^^
+YOLOv11 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Performance YOLOv11 Combiné
+.. list-table:: Performance YOLOv11 - Dataset Original
    :widths: 25 20 20 20 15
    :header-rows: 1
 
@@ -244,25 +246,27 @@ YOLOv11 - Dataset Combiné
      - 0.871
      - 0.865
 
+**Augmentations appliquées** : New Dataset + Marjan
+
 .. figure:: _static/images/void/void2_yolo11_matrix.png
-   :alt: Matrice de confusion YOLOv11 Combiné
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion YOLOv11 avec dataset combiné
+   Matrice de confusion YOLOv8 pour la détection des espaces vides
 
 .. figure:: _static/images/void/void2_yolo11_results.png
-   :alt: Courbes d'entraînement YOLOv11 Combiné
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement YOLOv11 avec dataset combiné
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
 
 DETR - Approche Transformer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Performance DETR
-   :widths: 25 20 20 20 15
+   :widths: 25 20 20 20 15 20
    :header-rows: 1
 
    * - Métrique
@@ -272,19 +276,20 @@ DETR - Approche Transformer
      - Rappel
    * - Global
      - 0.94
-     - -
-     - -
-     - -
+     - 
+     - 
+     - 
+
 
 .. figure:: _static/images/void/DTER_results.png
-   :alt: Courbes d'entraînement DETR
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour l'approche DETR
+   Les Courbe  d'entrenement pour la détection des espaces vides
 
-Analyse comparative
--------------------
+**Analyse comparative** :
+
 
 .. list-table:: Comparaison des architectures
    :widths: 25 15 15 20 20
@@ -293,42 +298,41 @@ Analyse comparative
    * - Architecture
      - mAP50
      - mAP50-95
-     - Temps inférence (ms)
-     - Taille modèle (MB)
+     - 
    * - YOLOv8 (original)
-     - 0.743
-     - 0.359
+     - 0.65
+     - 0.38
      - 12.3
      - 18.4
    * - YOLOv8 (augmenté)
-     - 0.723
-     - 0.366
+     - 0.66
+     - 0.35
      - 12.5
      - 18.4
-   * - YOLOv11 (combiné)
-     - 0.9544
-     - 0.66
+   * - YOLOv11
+     - 0.943
+     - 0.867
      - 14.1
      - 24.7
    * - DETR
-     - 0.94
-     - -
+     - 0.908
+     - 0.835
      - 32.5
      - 158.3
 
-**Conclusion** : YOLOv11 avec le dataset combiné offre les meilleures performances avec 95.44% mAP50 et un temps d'inférence raisonnable de 14.1ms.
+**Conclusion** : YOLOv11 offre le meilleur compromis avec 94.3% mAP50 et un temps d'inférence de seulement 14.1ms.
 
 Détection des étagères (shelf.pt)
 =================================
 
 YOLOv8 - Performance Optimale
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Performance détection étagères
    :widths: 30 20 20 20 15
    :header-rows: 1
 
-   * - Métrique
+   * - Metrique
      - mAP50
      - mAP50-95
      - Précision
@@ -340,21 +344,21 @@ YOLOv8 - Performance Optimale
      - 0.80
 
 .. figure:: _static/images/shelf/shelf_matrix.png
-   :alt: Matrice de confusion détection étagères
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour la détection des étagères
+   Matrice de confusion YOLOv8 pour la détection des shelves
 
 .. figure:: _static/images/shelf/shelf_results.png
-   :alt: Courbes d'entraînement détection étagères
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour la détection des étagères
+   Les Courbe  d'entrenement YOLOv8 pour la détection des shelves.
 
 **Paramètres clés** :
-- Modèle: YOLOv8m
+- Modèle: YOLOvm
 - Epochs: 100
 - Taille image: 640x640
 - Batch size: 16
@@ -363,56 +367,62 @@ YOLOv8 - Performance Optimale
 Détection des produits (products.pt)
 ===================================
 
-Produits détectés : huile, lait, eau, œufs, raibi
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Les produits utilitsee : oil,milk,water,eggs,raibi
+^^^^^^^^^^^^^^^^^^
 
 .. figure:: _static/images/products/products_matrix.png
-   :alt: Matrice de confusion produits
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Matrice de confusion pour la détection des produits
+   Matrice de confusion YOLOv8 pour la détection des produits
 
 .. figure:: _static/images/products/products_results.png
-   :alt: Courbes d'entraînement produits
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
 
-   Courbes d'entraînement pour la détection des produits
+   Les Courbe  d'entrenement YOLOv8 pour la détection des produits.
 
-Détection des SKU (10k images)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. figure:: _static/images/sku/sku_matrix.png
-   :alt: Matrice de confusion SKU
-   :width: 80%
-   :align: center
-
-   Matrice de confusion pour la détection des SKU
-
-.. figure:: _static/images/sku/sku_results.png
-   :alt: Courbes d'entraînement SKU
-   :width: 80%
-   :align: center
-
-   Courbes d'entraînement pour la détection des SKU
-
-Analyse des Erreurs
--------------------
-
-Principales causes d'erreurs :
-1. **Occlusion** : Produits partiellement cachés (23% des erreurs)
-2. **Reflets** : Sur les emballages métalliques (17%)
-3. **Similarité visuelle** : Entre produits de même marque (15%)
-4. **Petite taille** : Produits <50px (12%)
 
 **Recommandations** :
 - Augmenter les données d'entraînement pour les petits objets
 - Ajouter des angles de vue variés
 - Utiliser des augmentations spécifiques
 
+Analyse des Erreurs
+-------------------
+
+Les principales causes d'erreurs :
+1. **Occlusion** : Produits partiellement cachés (23% des erreurs)
+2. **Reflets** : Sur les emballages métalliques (17%)
+3. **Similarité visuelle** : Entre produits de même marque (15%)
+4. **Taille petite** : Produits <50px (12%)
+
+
+Détection des produits (products.pt)
+===================================
+
+Dataset de 10k images
+^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/images/sku/sku_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des objects
+
+.. figure:: _static/images/sku/sku_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des objects.
+
+
 Annexes Techniques
-==================
+=================
 
 Configuration Matérielle
 -----------------------
@@ -444,17 +454,17 @@ Jeux de Données
      - Val
      - Test
      - Classes
-   * - Espaces vides
+   * - Voids
      - 8,500
      - 1,200
      - 1,300
      - 1
-   * - Étageres
+   * - Shelves
      - 12,800
      - 1,800
      - 2,400
      - 3
-   * - Produits
+   * - Products
      - 75,600
      - 10,800
      - 13,600
