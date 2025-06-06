@@ -399,6 +399,28 @@ Les principales causes d'erreurs :
 3. **Similarité visuelle** : Entre produits de même marque (15%)
 4. **Taille petite** : Produits <50px (12%)
 
+
+Détection des produits (products.pt)
+===================================
+
+Dataset de 10k images
+^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/images/sku/sku_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des objects
+
+.. figure:: _static/images/sku/sku_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des objects.
+
+
 Annexes Techniques
 =================
 
