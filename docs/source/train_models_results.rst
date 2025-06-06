@@ -280,7 +280,16 @@ DETR - Approche Transformer
      - 
      - 
 
+
+.. figure:: _static/images/void/DTER_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+
 **Analyse comparative** :
+
 
 .. list-table:: Comparaison des architectures
    :widths: 25 15 15 20 20
