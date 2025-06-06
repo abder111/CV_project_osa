@@ -286,7 +286,7 @@ DETR - Approche Transformer
    :width: 80%
    :align: center
 
-   Les Courbe  d'entrenement YOLOv8 pour la détection des espaces vides
+   Les Courbe  d'entrenement pour la détection des espaces vides
 
 **Analyse comparative** :
 
@@ -325,14 +325,14 @@ DETR - Approche Transformer
 Détection des étagères (shelf.pt)
 =================================
 
-YOLOv8m - Performance Optimale
+YOLOv8 - Performance Optimale
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Performance détection étagères
    :widths: 30 20 20 20 15
    :header-rows: 1
 
-   * - Classe
+   * - Metrique
      - mAP50
      - mAP50-95
      - Précision
@@ -342,21 +342,20 @@ YOLOv8m - Performance Optimale
      - 0.876
      - 0.942
      - 0.961
-   * - Étagère standard
-     - 0.968
-     - 0.891
-     - 0.957
-     - 0.973
-   * - Étagère réfrigérée
-     - 0.949
-     - 0.872
-     - 0.938
-     - 0.956
-   * - Présentoir spécial
-     - 0.942
-     - 0.865
-     - 0.931
-     - 0.954
+
+.. figure:: _static/images/shelf/shelf_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des shelves
+
+.. figure:: _static/images/shelf/shelf_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des shelves.
 
 **Paramètres clés** :
 - Modèle: YOLOv8m
