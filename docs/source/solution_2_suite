@@ -1,0 +1,291 @@
+.. _solution_2_enhanced_osa:
+
+Solution 2 : Analyse Avancée de Disponibilité en Rayon avec Vision par Ordinateur
+===============================================================================
+
+.. contents:: Table des Matières
+   :depth: 3
+   :local:
+
+Introduction à la Solution 2
+----------------------------
+
+Cette deuxième approche représente une évolution significative par rapport à notre solution initiale. Alors que la première solution se concentrait sur la détection de produits, l'extraction de caractéristiques et le clustering pour la catégorisation, cette version avancée intègre des capacités sophistiquées telles que :
+
+* **Classification directe des sous-classes de produits** : Identification précise des variantes spécifiques (saveurs, tailles, marques)
+* **Détection dédiée des vides** : Identification explicite des espaces vides sur les étagères
+* **Analyse spatiale intelligente** : Attribution des vides aux catégories de produits manquants les plus probables
+
+L'innovation principale de cette pipeline réside dans sa capacité à identifier simultanément les produits individuels, les classifier en sous-classes spécifiques, et localiser les espaces vides, tout en utilisant des algorithmes sophistiqués pour associer intelligemment ces vides aux produits manquants les plus probables.
+
+Schéma Architectural de la Solution 2
+-------------------------------------
+
+::
+
+    [IMAGE ÉTAGÈRE] 
+           ↓
+    ┌─────────────────────────┬─────────────────────────┐
+    │                         │                         │
+    │    DÉTECTION YOLO       │    DÉTECTION YOLO       │
+    │      PRODUITS           │        VIDES            │
+    │  (individual_products)   │    (void_model)         │
+    └─────────┬───────────────┴─────────┬───────────────┘
+              │                         │
+              ↓                         ↓
+    ┌─────────────────────┐   ┌─────────────────────┐
+    │  CLASSIFICATION CNN │   │  ANALYSE SPATIALE   │
+    │    SOUS-CLASSES     │   │   DES CONTEXTES     │
+    │  (LightweightCNN)   │   │      VIDES          │
+    └─────────┬───────────┘   └─────────┬───────────┘
+              │                         │
+              └─────────┬───────────────┘
+                        ↓
+              ┌─────────────────────┐
+              │  ASSIGNMENT         │
+              │   INTELLIGENT       │
+              │  VIDES-PRODUITS     │
+              │ (Clustering DBSCAN) │
+              └─────────┬───────────┘
+                        ↓
+              ┌─────────────────────┐
+              │    GÉNÉRATION       │
+              │     RAPPORT         │
+              │  + VISUALISATION    │
+              └─────────────────────┘
+
+Architecture Technique Détaillée
+--------------------------------
+
+1. Pipeline YOLO-CNN pour Détection et Classification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Composants principaux :**
+
+* **Classe YOLOCNNPipeline** : Orchestrateur principal du processus
+* **Modèle YOLO** : ``individual_products.pt`` pour la détection d'objets
+* **Réseau CNN Léger** : ``LightweightCNN`` pour la classification des sous-classes
+
+**Processus de traitement :**
+
+1. **Détection YOLO** : Identification et localisation des produits individuels
+2. **Extraction et préparation** : Recadrage des produits détectés
+3. **Préprocessing CNN** : Redimensionnement, normalisation des images
+4. **Classification** : Attribution de sous-classes avec scores de confiance
+
+**Code de configuration type :**
+
+.. code-block:: python
+
+    pipeline = YOLOCNNPipeline(
+        yolo_model_path="individual_products.pt",
+        cnn_model_path="best_lightweight_cnn.pth",
+        class_names=['Coca-Cola', 'Pepsi', 'Sprite', 'Fanta', ...]
+    )
+
+2. Détection Dédiée des Vides
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Innovation clé :** Utilisation d'un modèle YOLO spécialisé (``void_model_path``) exclusivement entraîné pour identifier les espaces vides sur les étagères.
+
+**Avantages par rapport à l'inférence indirecte :**
+
+* Précision accrue dans les environnements complexes
+* Détection robuste même en présence de produits mal alignés
+* Identification explicite des zones de rupture de stock
+
+**Sortie :** Boîtes englobantes et scores de confiance pour chaque vide détecté
+
+3. Analyse Spatiale Contextuelle des Vides
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Méthode :** ``_analyze_spatial_context``
+
+**Fonctionnalités :**
+
+* **Identification des voisins** : Produits adjacents (gauche, droite, haut, bas)
+* **Tolérance d'alignement** : Paramètre ``neighbor_alignment_tolerance`` pour déterminer l'appartenance à la même rangée/colonne
+* **Analyse du contexte dominant** : Identification des motifs spatiaux cohérents
+
+**Exemple de logique spatiale :**
+
+.. code-block:: python
+
+    # Analyse du contexte pour un vide
+    spatial_context = {
+        'left_neighbor': 'Coca-Cola',
+        'right_neighbor': 'Coca-Cola',
+        'top_neighbor': None,
+        'bottom_neighbor': 'Pepsi',
+        'dominant_context': 'Coca-Cola',
+        'context_confidence': 0.85
+    }
+
+4. Assignment Intelligent avec Priorité Spatiale
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Méthode principale :** ``_intelligent_void_assignment_with_spatial_context``
+
+**Facteurs de pondération :**
+
+1. **Priorité du contexte spatial** (NOUVEAU) : Poids principal basé sur l'analyse spatiale
+2. **Proximité géographique** : Distance euclidienne entre vides et produits
+3. **Rareté relative** : Sous-représentation de certains produits
+4. **Reconnaissance de motifs** : Patterns de placement habituels
+5. **Scores de confiance** : Fiabilité des détections YOLO et classifications CNN
+
+**Clustering DBSCAN :**
+
+* **Paramètres configurables** : ``clustering_eps``, ``min_cluster_size``
+* **Formation de clusters logiques** : Regroupement des produits physiquement proches
+* **Distance maximale d'assignment** : ``max_assignment_distance`` pour éviter les attributions improbables
+
+**Algorithme d'assignment :**
+
+.. code-block:: python
+
+    for void in detected_voids:
+        spatial_weight = calculate_spatial_priority(void, spatial_context)
+        proximity_weight = calculate_proximity_score(void, nearby_products)
+        scarcity_weight = calculate_scarcity_factor(product_distribution)
+        
+        assignment_score = (
+            spatial_weight * spatial_context_weight +
+            proximity_weight * proximity_weight_factor +
+            scarcity_weight * scarcity_weight_factor
+        )
+
+5. Génération de Rapports et Visualisation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Métriques du rapport (``_generate_summary``) :**
+
+* Nombre total de produits détectés
+* Répartition par sous-classe de produits
+* Nombre de vides identifiés
+* Assignments vides-produits avec scores de confiance
+* Pourcentage de disponibilité par catégorie
+
+**Visualisation (``visualize_results``) :**
+
+* **Boîtes englobantes colorées** : Produits par sous-classe, vides en rouge
+* **Labels informatifs** : Sous-classe, confiance YOLO, confiance CNN
+* **Assignments de vides** : Produit assigné affiché pour chaque vide
+* **Interface intuitive** : Validation rapide par le personnel
+
+**Exemple de sortie visuelle :**
+
+.. code-block:: text
+
+    [PRODUIT: Coca-Cola | YOLO: 0.92 | CNN: 0.87]
+    [VIDE → Pepsi assigné | Confiance: 0.78]
+    [PRODUIT: Sprite | YOLO: 0.89 | CNN: 0.91]
+
+Paramètres de Configuration
+--------------------------
+
+**Paramètres principaux :**
+
+.. code-block:: python
+
+    CONFIGURATION = {
+        # Modèles
+        'yolo_product_model': 'individual_products.pt',
+        'yolo_void_model': 'void_detection.pt',
+        'cnn_model': 'best_lightweight_cnn.pth',
+        
+        # Seuils de détection
+        'yolo_confidence_threshold': 0.5,
+        'cnn_confidence_threshold': 0.6,
+        
+        # Analyse spatiale
+        'neighbor_alignment_tolerance': 50,  # pixels
+        'spatial_context_weight': 0.4,
+        'proximity_weight': 0.3,
+        'scarcity_weight': 0.3,
+        
+        # Clustering
+        'clustering_eps': 100,  # pixels
+        'min_cluster_size': 2,
+        'max_assignment_distance': 200,  # pixels
+    }
+
+Avantages de la Solution 2
+--------------------------
+
+**Précision améliorée :**
+
+* Classification granulaire des variantes de produits
+* Détection explicite des vides (vs inférence)
+* Analyse contextuelle sophistiquée
+
+**Intelligence opérationnelle :**
+
+* Identification proactive des ruptures de stock
+* Suggestions d'assignments basées sur le contexte spatial
+* Métriques de disponibilité par sous-catégorie
+
+**Scalabilité :**
+
+* Architecture modulaire et extensible
+* Adaptation aux nouveaux produits via réentraînement CNN
+* Configuration flexible des paramètres
+
+**Impact business :**
+
+* Réduction des ventes perdues
+* Optimisation de la conformité planogramme
+* Amélioration de l'expérience client
+
+Cas d'Usage Recommandés
+----------------------
+
+**Retail Grande Distribution :**
+
+* Audits automatisés de rayons à haute fréquence
+* Monitoring en temps réel des stocks critiques
+* Analyse de performance par catégorie de produits
+
+**Gestion d'Inventaire Avancée :**
+
+* Détection précoce des tendances de rupture
+* Optimisation des cycles de réapprovisionnement
+* Analyse prédictive des besoins en stock
+
+**Contrôle Qualité Merchandising :**
+
+* Vérification de conformité planogramme
+* Détection d'erreurs de placement
+* Optimisation de l'agencement des rayons
+
+Limitations et Considérations
+----------------------------
+
+**Dépendances techniques :**
+
+* Qualité des modèles YOLO et CNN pré-entraînés
+* Conditions d'éclairage et angle de prise de vue
+* Puissance de calcul requise pour traitement en temps réel
+
+**Maintenance opérationnelle :**
+
+* Mise à jour périodique des modèles
+* Calibration des paramètres par environnement
+* Formation du personnel à l'interprétation des résultats
+
+Conclusion
+----------
+
+La Solution 2 représente une approche révolutionnaire de l'analyse de disponibilité en rayon, combinant détection d'objets robuste, classification granulaire, détection explicite des vides et raisonnement spatial intelligent. Cette solution complète offre aux retailers un niveau de détail et de précision inégalé, leur permettant de gérer proactivement leurs inventaires, d'optimiser l'espace en rayon, de minimiser les ventes perdues et d'offrir une expérience client supérieure.
+
+La conception modulaire et extensible assure sa scalabilité et son adaptabilité aux demandes évolutives des opérations retail modernes, en faisant un outil puissant pour l'avenir du merchandising automatisé.
+
+Références Techniques
+--------------------
+
+.. [1] `YOLO (You Only Look Once) <https://pjreddie.com/darknet/yolo/>`_
+.. [2] `Réseaux de Neurones Convolutifs (CNN) <https://en.wikipedia.org/wiki/Convolutional_neural_network>`_
+.. [3] `Clustering DBSCAN <https://en.wikipedia.org/wiki/DBSCAN>`_
+.. [4] `PyTorch Framework <https://pytorch.org/>`_
+.. [5] `OpenCV Computer Vision <https://opencv.org/>`_
+.. [6] `Retail Analytics and Computer Vision <https://arxiv.org/abs/2008.07739>`_
