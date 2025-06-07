@@ -1,6 +1,6 @@
 .. _solution_2_enhanced_osa:
 
-Solution 2 : Analyse Avancée de Disponibilité en Rayon avec Vision par Ordinateur
+Solution 2 suite : Analyse Avancée de Disponibilité en Rayon avec Vision par Ordinateur
 ===============================================================================
 
 .. contents:: Table des Matières
