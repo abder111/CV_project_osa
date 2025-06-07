@@ -8,6 +8,6 @@ Bienvenue dans la documentation de Mon Projet !
    introduction
    modeles
    train_models_results
-   solution_1
+   Solution_1
    guide_utilisation
    
