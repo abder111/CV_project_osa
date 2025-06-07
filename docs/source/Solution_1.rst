@@ -25,7 +25,7 @@ Schéma de l'Architecture
     │  │   SHELF     │  │   PRODUCT   │  │    VOID     │ │
     │  │   MODEL     │  │   MODELS    │  │   MODEL     │ │
     │  │             │  │             │  │             │ │
-    │  │ conf: 0.3   │  │ conf: 0.1   │  │ conf: 0.3   │ │
+    │  │ conf: 0.3   │  │ conf: 0.3   │  │ conf: 0.3   │ │
     │  └─────┬───────┘  └─────┬───────┘  └─────┬───────┘ │
     │        │                │                │         │
     │        ▼                ▼                ▼         │
