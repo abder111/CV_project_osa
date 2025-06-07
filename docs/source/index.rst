@@ -11,4 +11,5 @@ Bienvenue dans la documentation de Mon Projet !
    Solution_1
    guide_utilisation 
    solution_2
+   solution_2_suite
    
