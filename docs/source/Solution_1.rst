@@ -25,7 +25,7 @@ Schéma de l'Architecture
     │  │   SHELF     │  │   PRODUCT   │  │    VOID     │ │
     │  │   MODEL     │  │   MODELS    │  │   MODEL     │ │
     │  │             │  │             │  │             │ │
-    │  │ conf: 0.1   │  │ conf: 0.3   │  │ conf: 0.3   │ │
+    │  │ conf: 0.3   │  │ conf: 0.1   │  │ conf: 0.3   │ │
     │  └─────┬───────┘  └─────┬───────┘  └─────┬───────┘ │
     │        │                │                │         │
     │        ▼                ▼                ▼         │
@@ -165,8 +165,8 @@ Seuils de Confiance
 .. code-block:: python
 
     CONFIDENCE_THRESHOLDS = {
-        'shelf': 0.1,    # Seuil bas pour capturer toutes les étagères
-        'product': 0.3,  # Équilibre précision/rappel
+        'shelf': 0.3,    # Seuil bas pour capturer toutes les étagères
+        'product': 0.1,  # Équilibre précision/rappel
         'single': 0.3,   # Détection produits individuels
         'void': 0.3      # Zones vides significatives
     }
