@@ -10,222 +10,144 @@ Cette solution propose une approche hybride révolutionnaire qui combine l'appre
 
 **Avantage principal** : Solution complète end-to-end combinant classification précise des produits, détection explicite des vides, et analyse contextuelle spatiale pour une surveillance optimale des rayons retail.
 
-Architecture de la Solution Complète
-------------------------------------
+Pipeline de Détection de Produits et Vides sur Étagères
+========================================================
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        IMAGE D'ENTRÉE                          │
-│                         (Étagère)                              │
-└─────────────┬───────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    DÉTECTION DUALE YOLO                        │
-│                                                                 │
-│  ┌───────────────────────────┬─────────────────────────────────┐ │
-│  │     DÉTECTION PRODUITS    │      DÉTECTION VIDES           │ │
-│  │   (individual_products)   │      (void_model)              │ │
-│  │     Confidence: 0.5       │      Confidence: 0.5           │ │
-│  └─────────────┬─────────────┴──────────────┬──────────────────┘ │
-└────────────────┼────────────────────────────┼────────────────────┘
-                 │                            │
-                 ▼                            ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         PHASE 1: CLUSTERING                    │
-│                      (Annotation Automatique)                  │
-└─────────────┬───────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 1: Détection et Extraction des Produits                │
-│                                                                 │
-│  ┌─────────────────┐    ┌─────────────────────────────────────┐ │
-│  │ IMAGE D'ENTRÉE  │ → │        YOLO DETECTION               │ │
-│  │   (Étagère)     │    │   individual_products.pt            │ │
-│  └─────────────────┘    │   Confidence: 0.5                   │ │
-│                         └─────────────┬───────────────────────┘ │
-│                                       │                         │
-│                                       ▼                         │
-│                         ┌─────────────────────────────────────┐ │
-│                         │      CROPPING AUTOMATIQUE          │ │
-│                         │   → /crops/product_000X.jpg        │ │
-│                         └─────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 2: Extraction de Caractéristiques et Clustering         │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │              FEATURE EXTRACTION                             │ │
-│  │                                                             │ │
-│  │  ┌─────────────┐    ┌─────────────────────────────────────┐ │ │
-│  │  │   Img2Vec   │ OR │         ResNet18 Features           │ │ │
-│  │  │  (Primaire) │    │          (Fallback)                 │ │ │
-│  │  └─────────────┘    └─────────────────────────────────────┘ │ │
-│  │                                   │                         │ │
-│  │                                   ▼                         │ │
-│  │              ┌─────────────────────────────────────────┐    │ │
-│  │              │         t-SNE REDUCTION                 │    │ │
-│  │              │    • n_components = 3                   │    │ │
-│  │              │    • Visualisation 3D                   │    │ │
-│  │              └─────────────┬───────────────────────────┘    │ │
-│  │                            │                                │ │
-│  │                            ▼                                │ │
-│  │              ┌─────────────────────────────────────────┐    │ │
-│  │              │         K-MEANS CLUSTERING              │    │ │
-│  │              │    • Méthode du coude                   │    │ │
-│  │              │    • Clusters automatiques              │    │ │
-│  │              └─────────────┬───────────────────────────┘    │ │
-│  └──────────────────────────┬─────────────────────────────────┘ │
-└───────────────────────────┬───────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 3: Génération d'Annotations                             │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │           ORGANISATION PAR CLUSTERS                         │ │
-│  │                                                             │ │
-│  │  /dataset/                                                  │ │
-│  │  ├── cluster_0_boissons/                                    │ │
-│  │  │   ├── product_001.jpg                                    │ │
-│  │  │   ├── product_015.jpg                                    │ │
-│  │  │   └── product_032.jpg                                    │ │
-│  │  ├── cluster_1_snacks/                                      │ │
-│  │  │   ├── product_003.jpg                                    │ │
-│  │  │   └── product_021.jpg                                    │ │
-│  │  └── cluster_2_produits_laitiers/                          │ │
-│  │      ├── product_007.jpg                                    │ │
-│  │      └── product_018.jpg                                    │ │
-│  │                                                             │ │
-│  │                           │                                 │ │
-│  │                           ▼                                 │ │
-│  │           ┌─────────────────────────────────────────┐       │ │
-│  │           │    GÉNÉRATION ANNOTATIONS.JSON          │       │ │
-│  │           │  • image_path → class_label             │       │ │
-│  │           │  • Validation semi-automatique          │       │ │
-│  │           └─────────────────────────────────────────┘       │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     PHASE 2: APPRENTISSAGE                     │
-│                    (Entraînement CNN)                          │
-└─────────────┬───────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 4: Préparation du Dataset d'Entraînement               │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                DATASET STRUCTURE                            │ │
-│  │                                                             │ │
-│  │  /training_data/                                            │ │
-│  │  ├── train/ (70%)                                           │ │
-│  │  │   ├── boissons/                                          │ │
-│  │  │   ├── snacks/                                            │ │
-│  │  │   └── produits_laitiers/                                 │ │
-│  │  ├── validation/ (20%)                                      │ │
-│  │  │   ├── boissons/                                          │ │
-│  │  │   ├── snacks/                                            │ │
-│  │  │   └── produits_laitiers/                                 │ │
-│  │  └── test/ (10%)                                            │ │
-│  │      ├── boissons/                                          │ │
-│  │      ├── snacks/                                            │ │
-│  │      └── produits_laitiers/                                 │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 5: Entraînement CNN Optimisé                           │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │              ARCHITECTURE CNN LÉGÈRE                        │ │
-│  │                                                             │ │
-│  │  ┌─────────────────────────────────────────────────────────┐ │ │
-│  │  │                  INPUT LAYER                            │ │ │
-│  │  │                224x224x3 RGB                            │ │ │
-│  │  └─────────────┬───────────────────────────────────────────┘ │ │
-│  │                │                                             │ │
-│  │                ▼                                             │ │
-│  │  ┌─────────────────────────────────────────────────────────┐ │ │
-│  │  │           CONVOLUTIONAL BLOCKS                          │ │ │
-│  │  │                                                         │ │ │
-│  │  │  • Block 1: Conv2D(32) + BatchNorm + ReLU + MaxPool    │ │ │
-│  │  │  • Block 2: Conv2D(64) + BatchNorm + ReLU + MaxPool    │ │ │
-│  │  │  • Block 3: Conv2D(128) + BatchNorm + ReLU + MaxPool   │ │ │
-│  │  │  • Block 4: Conv2D(256) + BatchNorm + ReLU + MaxPool   │ │ │
-│  │  └─────────────┬───────────────────────────────────────────┘ │ │
-│  │                │                                             │ │
-│  │                ▼                                             │ │
-│  │  ┌─────────────────────────────────────────────────────────┐ │ │
-│  │  │           CLASSIFIER LAYERS                             │ │ │
-│  │  │                                                         │ │ │
-│  │  │  • GlobalAveragePooling2D                               │ │ │
-│  │  │  • Dense(512) + Dropout(0.5)                           │ │ │
-│  │  │  • Dense(256) + Dropout(0.3)                           │ │ │
-│  │  │  • Dense(n_classes) + Softmax                          │ │ │
-│  │  └─────────────────────────────────────────────────────────┘ │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     PHASE 3: ANALYSE AVANCÉE                   │
-│                  (Détection Vides et Assignation)             │
-└─────────────┬───────────────────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ÉTAPE 6: Pipeline de Production Intégré                       │
-│                                                                 │
-│  ┌─────────────────┐    ┌─────────────────────────────────────┐ │
-│  │ NOUVELLE IMAGE  │ → │      DÉTECTION DUALE YOLO           │ │
-│  │   (Étagère)     │    │   • Produits: individual_products   │ │
-│  │                 │    │   • Vides: void_model               │ │
-│  └─────────────────┘    └─────────────┬───────────────────────┘ │
-│                                       │                         │
-│                                       ▼                         │
-│                         ┌─────────────────────────────────────┐ │
-│                         │      CNN CLASSIFICATION             │ │
-│                         │    • Sous-classes granulaires       │ │
-│                         │    • Scores de confiance            │ │
-│                         │    • Classification temps réel      │ │
-│                         └─────────────┬───────────────────────┘ │
-│                                       │                         │
-│                                       ▼                         │
-│                         ┌─────────────────────────────────────┐ │
-│                         │    ANALYSE SPATIALE CONTEXTUELLE    │ │
-│                         │  • Identification des voisins       │ │
-│                         │  • Contexte dominant par zone       │ │
-│                         │  • Clustering DBSCAN spatial        │ │
-│                         └─────────────┬───────────────────────┘ │
-│                                       │                         │
-│                                       ▼                         │
-│                         ┌─────────────────────────────────────┐ │
-│                         │     ASSIGNATION INTELLIGENTE        │ │
-│                         │  • Priorité contexte spatial 40%    │ │
-│                         │  • Proximité géographique 30%       │ │
-│                         │  • Facteur de rareté 30%            │ │
-│                         │  • Scores de confiance pondérés     │ │
-│                         └─────────────┬───────────────────────┘ │
-│                                       │                         │
-│                                       ▼                         │
-│                         ┌─────────────────────────────────────┐ │
-│                         │       RÉSULTATS COMPLETS           │ │
-│                         │  • Classification fine produits     │ │
-│                         │  • Détection explicite des vides    │ │
-│                         │  • Assignation vides→produits       │ │
-│                         │  • Analyse de disponibilité         │ │
-│                         │  • Métriques de performance         │ │
-│                         │  • Visualisation contextuelle       │ │
-│                         └─────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-```
+PHASE INITIALE – Image d'Entrée
+-------------------------------
+
+**Image d'entrée** : Photo d'une étagère de supermarché.
+
+↓
+
+PHASE DE DÉTECTION DUALE YOLO
+-----------------------------
+
+**Détection YOLO Duale** :
+
+- **Détection de Produits** : `individual_products.pt`
+  - Seuil de confiance : 0.5
+- **Détection de Vides** : `void_model.pt`
+  - Seuil de confiance : 0.5
+
+↓
+
+PHASE 1 : Clustering Automatisé
+-------------------------------
+
+Étape 1 : Détection et Extraction des Produits
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Image d'entrée → Détection avec modèle `individual_products.pt`
+- Cropping automatique :
+  - Extrait : `/crops/product_000X.jpg`, etc.
+
+Étape 2 : Extraction de Caractéristiques et Clustering
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **Extraction de caractéristiques** :
+  - Méthode principale : `Img2Vec`
+  - Fallback : `ResNet18 Features`
+- **Réduction dimensionnelle** : `t-SNE`
+  - `n_components = 3`
+  - Visualisation 3D
+- **Clustering** : `K-Means`
+  - Détermination automatique du nombre de clusters via la méthode du coude
+
+Étape 3 : Génération d'Annotations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Organisation par clusters :
+
+  .. code-block:: text
+
+      /dataset/
+      ├── cluster_0_boissons/
+      │   ├── product_001.jpg
+      │   ├── product_015.jpg
+      ├── cluster_1_snacks/
+      │   ├── product_003.jpg
+      ├── cluster_2_produits_laitiers/
+      │   ├── product_007.jpg
+
+- Génération automatique d’un fichier `annotations.json` :
+  - Format : `image_path → class_label`
+  - Validation semi-automatique possible
+
+↓
+
+PHASE 2 : Apprentissage Supervisé
+---------------------------------
+
+Étape 4 : Préparation du Dataset
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Structure du dossier :
+
+.. code-block:: text
+
+    /training_data/
+    ├── train/ (70%)
+    │   ├── boissons/
+    │   ├── snacks/
+    │   └── produits_laitiers/
+    ├── validation/ (20%)
+    ├── test/ (10%)
+
+Étape 5 : Entraînement du Modèle CNN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Architecture CNN Légère** :
+
+- **Input Layer** : 224x224x3 RGB
+- **Convolutional Blocks** :
+  - Block 1 : Conv2D(32) + BatchNorm + ReLU + MaxPool
+  - Block 2 : Conv2D(64) + BatchNorm + ReLU + MaxPool
+  - Block 3 : Conv2D(128) + BatchNorm + ReLU + MaxPool
+  - Block 4 : Conv2D(256) + BatchNorm + ReLU + MaxPool
+- **Classifier** :
+  - GlobalAveragePooling2D
+  - Dense(512) + Dropout(0.5)
+  - Dense(256) + Dropout(0.3)
+  - Dense(n_classes) + Softmax
+
+↓
+
+PHASE 3 : Analyse Avancée et Assignation
+----------------------------------------
+
+Étape 6 : Pipeline de Production Intégré
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **Nouvelle image d’étagère** → Détection Duale YOLO :
+  - `individual_products` + `void_model`
+
+- **Classification CNN** :
+  - Sous-classes granulaires
+  - Scores de confiance
+
+- **Analyse Spatiale Contextuelle** :
+  - Identification des voisins
+  - Contexte dominant local
+  - Clustering spatial DBSCAN
+
+- **Assignation Intelligente** :
+  - Pondération :
+    - Contexte spatial : 40%
+    - Proximité géographique : 30%
+    - Rareté du produit : 30%
+  - Pondération des scores de confiance
+
+- **Résultats finaux** :
+  - Classification produit
+  - Détection des vides
+  - Assignation produit→vide
+  - Analyse de disponibilité
+  - Visualisation contextuelle
+  - Métriques de performance
+
+
+
 
 Analyse Spatiale et Détection des Vides
 ---------------------------------------
