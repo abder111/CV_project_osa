@@ -413,6 +413,13 @@ Dataset de 10k images
 
    Matrice de confusion YOLOv8 pour la détection des objects
 
+.. figure:: _static/images/sku/sku_matrix_nor.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion normalisee YOLOv8 pour la détection des objects
+
 .. figure:: _static/images/sku/sku_results.png
    :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
@@ -446,7 +453,7 @@ Jeux de Données
 ---------------
 
 .. list-table:: Statistiques des datasets
-   :widths: 30 15 15 15 15
+   :widths: 30 15 15 15 15 15
    :header-rows: 1
 
    * - Dataset
