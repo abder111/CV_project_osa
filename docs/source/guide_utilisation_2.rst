@@ -1,5 +1,5 @@
 ==================================================
-Guide d'utilisation - Retail Shelf Analysis
+Guide d'utilisation 2
 ==================================================
 
 Vue d'ensemble
@@ -321,7 +321,7 @@ Surveillance en temps réel
 * Tableaux de bord temps réel
 
 .. note::
-   Cette documentation couvre l'utilisation complète de l'application Retail Shelf Analysis. Pour des questions spécifiques ou des fonctionnalités avancées, consultez le code source ou contactez l'équipe de développement.
+   Cette documentation couvre l'utilisation complète de l'application Retail Shelf Analysis. Pour des questions spécifiques ou des fonctionnalités avancées, consultez le code source ou me contactez .
 
 Références
 ==========
