@@ -320,7 +320,7 @@ DETR - Approche Transformer
      - 32.5
      - 158.3
 
-**Conclusion** : YOLOv11 offre le meilleur compromis avec 94.3% mAP50 et un temps d'inférence de seulement 14.1ms.
+**Conclusion** : YOLOv8 offre le meilleur compromis avec 95.4% mAP50 
 
 Détection des étagères (shelf.pt)
 =================================
@@ -400,11 +400,11 @@ Les principales causes d'erreurs :
 4. **Taille petite** : Produits <50px (12%)
 
 
-Détection des produits (products.pt)
-===================================
+Détection des produits individuals (sku.pt)
+===========================================
 
 Dataset de 10k images
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: _static/images/sku/sku_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
@@ -450,25 +450,20 @@ Jeux de Données
    :header-rows: 1
 
    * - Dataset
-     - Train
-     - Val
-     - Test
+     - Images
      - Classes
    * - Voids
-     - 8,500
-     - 1,200
-     - 1,300
+     - +8,000
      - 1
    * - Shelves
-     - 12,800
-     - 1,800
-     - 2,400
-     - 3
+     - +6,000
+     - 1
    * - Products
-     - 75,600
-     - 10,800
-     - 13,600
-     - 125
+     - +500
+     - 5
+   * - Product pour Sku
+     - +10,000
+     - 1
 
 Glossaire
 ---------
