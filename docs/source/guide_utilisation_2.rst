@@ -52,6 +52,7 @@ Structure des fichiers
    project/
    ├── app.py                     # Application Streamlit principale
    ├── pipeline.py               # Pipeline d'analyse (EnhancedRetailPipeline)
+   ├── notebookClassification.ipynb  # Pour l'entrainemnt du model de classifocation
    ├── models/
    │   ├── individual_products.pt    # Modèle YOLO pour la détection
    │   ├── void.pt                   # Modèle de détection des voids
@@ -319,6 +320,16 @@ Surveillance en temps réel
 * Caméras de surveillance intégrées
 * Analyses périodiques automatisées
 * Tableaux de bord temps réel
+
+Transfer learning pour le modèle de classification
+--------------------------------------------------
+
+- Il est possible d’ajouter de nouvelles classes de produits.
+- Préparez vos images et leurs classes en utilisant une approche de clustering pour faciliter l’annotation.
+- Effectuez un entraînement par transfert (Transfer Learning) sur ces nouvelles classes.
+- Réutilisez ensuite le modèle pour la classification.
+- Utilisez le notebook `notebookClassification.ipynb`.
+
 
 .. note::
    Cette documentation couvre l'utilisation complète de l'application Retail Shelf Analysis. Pour des questions spécifiques ou des fonctionnalités avancées, consultez le code source ou me contactez .
