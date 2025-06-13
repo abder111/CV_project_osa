@@ -452,24 +452,24 @@ Configuration Matérielle
 Jeux de Données
 ---------------
 
-.. list-table:: Statistiques des datasets
-   :widths: 30 15 15 15 15 15
+.. list-table:: **Statistiques des datasets**
+   :widths: 30 15 15
    :header-rows: 1
 
    * - Dataset
      - Images
      - Classes
    * - Voids
-     - +8,000
+     - +8 000
      - 1
    * - Shelves
-     - +6,000
+     - +6 000
      - 1
    * - Products
      - +500
      - 5
    * - Product pour Sku
-     - +10,000
+     - +10 000
      - 1
 
 Glossaire
