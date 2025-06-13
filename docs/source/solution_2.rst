@@ -11,7 +11,7 @@ Cette solution propose une approche hybride révolutionnaire qui combine l'appre
 **Avantage principal** : Solution complète end-to-end combinant classification précise des produits, détection explicite des vides, et analyse contextuelle spatiale pour une surveillance optimale des rayons retail.
 
 Architecture de la Solution Complète
-====================================
+-------------------------------------
 
 .. code-block:: text
 
@@ -230,10 +230,10 @@ Architecture de la Solution Complète
 
 
 Analyse Spatiale et Détection des Vides
-=========================================
+-----------------------------------------
 
 Innovation Majeure : Détection Explicite des Vides
-===================================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Contrairement aux approches classiques qui infèrent les vides par absence de détection, cette solution utilise un **modèle YOLO dédié spécifiquement entraîné pour identifier les espaces vides**.
 
@@ -253,7 +253,7 @@ Contrairement aux approches classiques qui infèrent les vides par absence de d�
             [YOLO Vides] → [Vides détectés] → [Analyse spatiale]
 
 Analyse Spatiale Contextuelle
-==============================
+-----------------------------
 
 Le système développe une compréhension sophistiquée de l'organisation spatiale des produits sur l'étagère.
 
@@ -282,7 +282,7 @@ Le système développe une compréhension sophistiquée de l'organisation spatia
     }
 
 Clustering Spatial DBSCAN
-==========================
+---------------------------
 
 Utilisation de l'algorithme DBSCAN pour identifier les regroupements logiques de produits et optimiser les assignations.
 
@@ -299,10 +299,10 @@ Utilisation de l'algorithme DBSCAN pour identifier les regroupements logiques de
 * **Analyse de densité** : Identification des zones à forte/faible concentration
 
 Assignation Intelligente Multi-Critères
-========================================
+-----------------------------------------
 
 Algorithme d'Assignation Pondéré
-=================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Le système utilise un modèle de scoring multi-factoriel pour assigner intelligemment chaque vide détecté au produit manquant le plus probable.
 
@@ -323,7 +323,7 @@ Le système utilise un modèle de scoring multi-factoriel pour assigner intellig
     ) × Confiance_Détection
 
 Méthodes de Calcul des Scores
-=============================
+--------------------------------
 
 **Score de contexte spatial** :
 
@@ -344,10 +344,10 @@ Méthodes de Calcul des Scores
 * Équilibrage de la représentation par catégorie
 
 Pipeline de Production Intégré
-===============================
+----------------------------------
 
 Architecture Modulaire
-=======================
+^^^^^^^^^^^^^^^^^^^^^^
 
 Le système en production combine tous les composants dans un pipeline optimisé pour la performance et la précision.
 
@@ -375,7 +375,7 @@ Le système en production combine tous les composants dans un pipeline optimisé
     )
 
 Génération de Rapports Avancés
-===============================
+---------------------------------
 
 **Métriques de performance** :
 
@@ -401,10 +401,10 @@ Génération de Rapports Avancés
     [PRODUIT: Sprite | YOLO: 0.89 | CNN: 0.91]
 
 Génération d'Annotations Semi-Automatiques
-===========================================
+-------------------------------------------
 
 Organisation Hiérarchique des Données
-======================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Le système organise automatiquement les produits détectés selon leur appartenance aux clusters identifiés.
 
@@ -430,7 +430,7 @@ Le système organise automatiquement les produits détectés selon leur apparten
         └── visual_similarity.json
 
 Validation et Raffinement
-==========================
+--------------------------
 
 **Processus de validation** :
 
@@ -446,7 +446,7 @@ Validation et Raffinement
 * Taux de validation manuelle < 10%
 
 Fichier d'Annotations Automatique
-==================================
+----------------------------------
 
 Le système génère automatiquement un fichier d'annotations standardisé compatible avec les frameworks d'apprentissage supervisé.
 
@@ -483,10 +483,10 @@ Le système génère automatiquement un fichier d'annotations standardisé compa
     }
 
 Architecture CNN Optimisée
-===========================
+--------------------------
 
 Conception du Modèle
-=====================
+^^^^^^^^^^^^^^^^^^^^
 
 Le CNN est spécialement conçu pour être léger et efficace tout en maintenant une précision élevée sur les catégories de produits identifiées par clustering.
 
@@ -510,7 +510,7 @@ Le CNN est spécialement conçu pour être léger et efficace tout en maintenant
 * **Activation finale** : Softmax pour probabilités de classe
 
 Stratégie d'Entraînement
-=========================
+---------------------------
 
 **Préparation des données** :
 
@@ -532,7 +532,7 @@ Stratégie d'Entraînement
 * **Early stopping** : Patience de 10 epochs sur validation loss
 
 Métriques de Performance
-========================
+-------------------------
 
 **Évaluation du modèle** :
 
@@ -545,7 +545,7 @@ Avantages de l'Approche Hybride
 ================================
 
 Efficacité du Processus d'Annotation
-=====================================
+--------------------------------------
 
 **Réduction des coûts** :
 
@@ -560,7 +560,7 @@ Efficacité du Processus d'Annotation
 * **Traçabilité** : Scores de confiance pour chaque annotation
 
 Performance de Classification
-=============================
+-----------------------------
 
 **Précision améliorée** :
 
@@ -575,10 +575,10 @@ Performance de Classification
 * **Optimisation matérielle** : Compatible GPU/CPU selon les ressources
 
 Applications Pratiques Avancées
-================================
+---------------------------------
 
 Surveillance Retail Complète
-=============================
+---------------------------------
 
 **Audit automatique d'assortiment avancé** :
 
@@ -602,7 +602,7 @@ Surveillance Retail Complète
 * Prédiction des besoins de réapprovisionnement par zone
 
 Analyse de Performance Opérationnelle
-======================================
+--------------------------------------
 
 **Métriques de disponibilité granulaires** :
 
@@ -619,7 +619,7 @@ Analyse de Performance Opérationnelle
 * Alertes automatiques pour stocks critiques
 
 Intégration Système Retail
-===========================
+---------------------------------
 
 **API REST complète** :
 
@@ -643,10 +643,10 @@ Intégration Système Retail
 * Rapports personnalisables par zone/catégorie/période
 
 Configuration Technique Complète
-=================================
+---------------------------------
 
 Environnement de Production
-============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Architecture système recommandée** :
 
@@ -670,7 +670,7 @@ Environnement de Production
     pandas>=2.0.0               # Analyse de données
 
 Paramètres de Configuration Avancés
-====================================
+-------------------------------------
 
 **Configuration complète du système** :
 
@@ -707,7 +707,7 @@ Paramètres de Configuration Avancés
     }
 
 Métriques de Performance et Monitoring
-=======================================
+---------------------------------
 
 **KPIs techniques** :
 
@@ -724,10 +724,10 @@ Métriques de Performance et Monitoring
 * **Satisfaction client** : Amélioration de la disponibilité perçue
 
 Évolutions et Perspectives Futures
-===================================
+------------------------------------
 
 Améliorations Techniques Programmées
-=====================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Intelligence artificielle avancée** :
 
@@ -744,7 +744,7 @@ Améliorations Techniques Programmées
 * **Auto-scaling** : Adaptation dynamique aux charges variables
 
 Extensions Fonctionnelles Planifiées
-=====================================
+---------------------------------
 
 **Analyse comportementale** :
 
@@ -763,10 +763,10 @@ Extensions Fonctionnelles Planifiées
 Cette solution hybride représente l'état de l'art en matière de surveillance automatisée des rayons retail. Elle combine la puissance de l'apprentissage automatique, l'intelligence spatiale et l'analyse contextuelle pour offrir une solution complète de gestion des stocks et d'optimisation de la disponibilité produits. L'approche modulaire et extensible garantit son évolutivité face aux défis futurs du retail moderne.
 
 Configuration et Déploiement
-=============================
+---------------------------------
 
 Environnement Technique
-========================
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Dépendances système** :
 
@@ -783,7 +783,7 @@ Environnement Technique
 * **CPU** : Processeur multi-core pour preprocessing
 
 Paramètres Configurables
-=========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Configuration clustering** :
 
@@ -798,7 +798,7 @@ Paramètres Configurables
 * Hyperparamètres : Learning rate, batch size, regularization
 
 Métriques de Suivi
-===================
+---------------------
 
 **Phase clustering** :
 
@@ -819,10 +819,10 @@ Métriques de Suivi
 * Taux de faux positifs/négatifs
 
 Perspectives d'Évolution
-========================
+---------------------------------
 
 Améliorations Techniques
-========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Auto-amélioration** :
 
@@ -843,7 +843,7 @@ Améliorations Techniques
 * Gestion des conditions d'éclairage variables
 
 Extensions Fonctionnelles
-==========================
+---------------------------------8
 
 **Multi-modalité** :
 
