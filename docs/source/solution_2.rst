@@ -228,11 +228,12 @@ Architecture de la Solution Complète
     └─────────────────────────────────────────────────────────────────┘
 
 
+
 Analyse Spatiale et Détection des Vides
----------------------------------------
+=========================================
 
 Innovation Majeure : Détection Explicite des Vides
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================
 
 Contrairement aux approches classiques qui infèrent les vides par absence de détection, cette solution utilise un **modèle YOLO dédié spécifiquement entraîné pour identifier les espaces vides**.
 
@@ -245,14 +246,14 @@ Contrairement aux approches classiques qui infèrent les vides par absence de d�
 
 **Architecture technique** :
 
-```
-[IMAGE] → [YOLO Produits] → [Produits détectés]
-         ↓
-        [YOLO Vides] → [Vides détectés] → [Analyse spatiale]
-```
+.. code-block:: text
+
+    [IMAGE] → [YOLO Produits] → [Produits détectés]
+             ↓
+            [YOLO Vides] → [Vides détectés] → [Analyse spatiale]
 
 Analyse Spatiale Contextuelle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==============================
 
 Le système développe une compréhension sophistiquée de l'organisation spatiale des produits sur l'étagère.
 
@@ -265,23 +266,23 @@ Le système développe une compréhension sophistiquée de l'organisation spatia
 
 **Exemple de contexte spatial analysé** :
 
-```json
-{
-  "void_id": "void_001",
-  "spatial_context": {
-    "left_neighbor": "Coca-Cola",
-    "right_neighbor": "Coca-Cola", 
-    "top_neighbor": null,
-    "bottom_neighbor": "Pepsi",
-    "dominant_context": "Coca-Cola",
-    "context_confidence": 0.85,
-    "alignment_score": 0.92
-  }
-}
-```
+.. code-block:: json
+
+    {
+      "void_id": "void_001",
+      "spatial_context": {
+        "left_neighbor": "Coca-Cola",
+        "right_neighbor": "Coca-Cola", 
+        "top_neighbor": null,
+        "bottom_neighbor": "Pepsi",
+        "dominant_context": "Coca-Cola",
+        "context_confidence": 0.85,
+        "alignment_score": 0.92
+      }
+    }
 
 Clustering Spatial DBSCAN
-~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Utilisation de l'algorithme DBSCAN pour identifier les regroupements logiques de produits et optimiser les assignations.
 
@@ -298,10 +299,10 @@ Utilisation de l'algorithme DBSCAN pour identifier les regroupements logiques de
 * **Analyse de densité** : Identification des zones à forte/faible concentration
 
 Assignation Intelligente Multi-Critères
----------------------------------------
+========================================
 
 Algorithme d'Assignation Pondéré
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=================================
 
 Le système utilise un modèle de scoring multi-factoriel pour assigner intelligemment chaque vide détecté au produit manquant le plus probable.
 
@@ -313,16 +314,16 @@ Le système utilise un modèle de scoring multi-factoriel pour assigner intellig
 
 **Formule de calcul** :
 
-```
-Score_Assignment = (
-    Contexte_Spatial × 0.4 +
-    Proximité_Inverse × 0.3 +
-    Facteur_Rareté × 0.3
-) × Confiance_Détection
-```
+.. code-block:: text
+
+    Score_Assignment = (
+        Contexte_Spatial × 0.4 +
+        Proximité_Inverse × 0.3 +
+        Facteur_Rareté × 0.3
+    ) × Confiance_Détection
 
 Méthodes de Calcul des Scores
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================
 
 **Score de contexte spatial** :
 
@@ -343,10 +344,10 @@ Méthodes de Calcul des Scores
 * Équilibrage de la représentation par catégorie
 
 Pipeline de Production Intégré
-------------------------------
+===============================
 
 Architecture Modulaire
-~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Le système en production combine tous les composants dans un pipeline optimisé pour la performance et la précision.
 
@@ -359,22 +360,22 @@ Le système en production combine tous les composants dans un pipeline optimisé
 
 **Configuration type** :
 
-```python
-pipeline = EnhancedRetailPipeline(
-    yolo_product_model='individual_products.pt',
-    yolo_void_model='void_detection.pt', 
-    cnn_model='best_lightweight_cnn.pth',
-    class_names=['Coca-Cola', 'Pepsi', 'Sprite', ...],
-    spatial_config={
-        'neighbor_tolerance': 50,
-        'clustering_eps': 100,
-        'max_assignment_distance': 200
-    }
-)
-```
+.. code-block:: python
+
+    pipeline = EnhancedRetailPipeline(
+        yolo_product_model='individual_products.pt',
+        yolo_void_model='void_detection.pt', 
+        cnn_model='best_lightweight_cnn.pth',
+        class_names=['Coca-Cola', 'Pepsi', 'Sprite', ...],
+        spatial_config={
+            'neighbor_tolerance': 50,
+            'clustering_eps': 100,
+            'max_assignment_distance': 200
+        }
+    )
 
 Génération de Rapports Avancés
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===============================
 
 **Métriques de performance** :
 
@@ -393,43 +394,43 @@ Génération de Rapports Avancés
 
 **Exemple de sortie visuelle** :
 
-```
-[PRODUIT: Coca-Cola | YOLO: 0.92 | CNN: 0.87]
-[VIDE → Pepsi assigné | Confiance: 0.78 | Contexte: 0.85]
-[PRODUIT: Sprite | YOLO: 0.89 | CNN: 0.91]
-```
+.. code-block:: text
+
+    [PRODUIT: Coca-Cola | YOLO: 0.92 | CNN: 0.87]
+    [VIDE → Pepsi assigné | Confiance: 0.78 | Contexte: 0.85]
+    [PRODUIT: Sprite | YOLO: 0.89 | CNN: 0.91]
 
 Génération d'Annotations Semi-Automatiques
-------------------------------------------
+===========================================
 
 Organisation Hiérarchique des Données
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+======================================
 
 Le système organise automatiquement les produits détectés selon leur appartenance aux clusters identifiés.
 
 **Structure de données générée** :
 
-```
-dataset_clustered/
-├── cluster_0_boissons_gazeuses/
-│   ├── coca_cola_001.jpg
-│   ├── pepsi_002.jpg
-│   └── sprite_003.jpg
-├── cluster_1_eaux_minerales/
-│   ├── evian_004.jpg
-│   ├── vittel_005.jpg
-│   └── perrier_006.jpg
-├── cluster_2_jus_fruits/
-│   ├── tropicana_007.jpg
-│   └── minute_maid_008.jpg
-└── metadata/
-    ├── cluster_analysis.json
-    ├── confidence_scores.json
-    └── visual_similarity.json
-```
+.. code-block:: text
+
+    dataset_clustered/
+    ├── cluster_0_boissons_gazeuses/
+    │   ├── coca_cola_001.jpg
+    │   ├── pepsi_002.jpg
+    │   └── sprite_003.jpg
+    ├── cluster_1_eaux_minerales/
+    │   ├── evian_004.jpg
+    │   ├── vittel_005.jpg
+    │   └── perrier_006.jpg
+    ├── cluster_2_jus_fruits/
+    │   ├── tropicana_007.jpg
+    │   └── minute_maid_008.jpg
+    └── metadata/
+        ├── cluster_analysis.json
+        ├── confidence_scores.json
+        └── visual_similarity.json
 
 Validation et Raffinement
-~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 **Processus de validation** :
 
@@ -445,47 +446,47 @@ Validation et Raffinement
 * Taux de validation manuelle < 10%
 
 Fichier d'Annotations Automatique
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==================================
 
 Le système génère automatiquement un fichier d'annotations standardisé compatible avec les frameworks d'apprentissage supervisé.
 
 **Format JSON généré** :
 
-```json
-{
-  "dataset_info": {
-    "total_images": 1250,
-    "num_classes": 8,
-    "creation_date": "2025-06-08",
-    "clustering_method": "kmeans_tsne"
-  },
-  "class_mapping": {
-    "0": "boissons_gazeuses",
-    "1": "eaux_minerales", 
-    "2": "jus_fruits",
-    "3": "snacks_sales",
-    "4": "chocolats",
-    "5": "biscuits",
-    "6": "produits_laitiers",
-    "7": "conserves"
-  },
-  "annotations": [
+.. code-block:: json
+
     {
-      "image_path": "dataset/cluster_0/coca_cola_001.jpg",
-      "class_id": 0,
-      "class_name": "boissons_gazeuses",
-      "confidence_clustering": 0.89,
-      "cluster_purity": 0.94
+      "dataset_info": {
+        "total_images": 1250,
+        "num_classes": 8,
+        "creation_date": "2025-06-08",
+        "clustering_method": "kmeans_tsne"
+      },
+      "class_mapping": {
+        "0": "boissons_gazeuses",
+        "1": "eaux_minerales", 
+        "2": "jus_fruits",
+        "3": "snacks_sales",
+        "4": "chocolats",
+        "5": "biscuits",
+        "6": "produits_laitiers",
+        "7": "conserves"
+      },
+      "annotations": [
+        {
+          "image_path": "dataset/cluster_0/coca_cola_001.jpg",
+          "class_id": 0,
+          "class_name": "boissons_gazeuses",
+          "confidence_clustering": 0.89,
+          "cluster_purity": 0.94
+        }
+      ]
     }
-  ]
-}
-```
 
 Architecture CNN Optimisée
---------------------------
+===========================
 
 Conception du Modèle
-~~~~~~~~~~~~~~~~~~~
+=====================
 
 Le CNN est spécialement conçu pour être léger et efficace tout en maintenant une précision élevée sur les catégories de produits identifiées par clustering.
 
@@ -509,7 +510,7 @@ Le CNN est spécialement conçu pour être léger et efficace tout en maintenant
 * **Activation finale** : Softmax pour probabilités de classe
 
 Stratégie d'Entraînement
-~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 **Préparation des données** :
 
@@ -531,7 +532,7 @@ Stratégie d'Entraînement
 * **Early stopping** : Patience de 10 epochs sur validation loss
 
 Métriques de Performance
-~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 **Évaluation du modèle** :
 
@@ -541,10 +542,10 @@ Métriques de Performance
 * **Temps d'inférence** : < 50ms par image sur GPU standard
 
 Avantages de l'Approche Hybride
--------------------------------
+================================
 
 Efficacité du Processus d'Annotation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=====================================
 
 **Réduction des coûts** :
 
@@ -559,7 +560,7 @@ Efficacité du Processus d'Annotation
 * **Traçabilité** : Scores de confiance pour chaque annotation
 
 Performance de Classification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================
 
 **Précision améliorée** :
 
@@ -574,10 +575,10 @@ Performance de Classification
 * **Optimisation matérielle** : Compatible GPU/CPU selon les ressources
 
 Applications Pratiques Avancées
--------------------------------
+================================
 
 Surveillance Retail Complète
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================
 
 **Audit automatique d'assortiment avancé** :
 
@@ -601,7 +602,7 @@ Surveillance Retail Complète
 * Prédiction des besoins de réapprovisionnement par zone
 
 Analyse de Performance Opérationnelle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+======================================
 
 **Métriques de disponibilité granulaires** :
 
@@ -618,7 +619,7 @@ Analyse de Performance Opérationnelle
 * Alertes automatiques pour stocks critiques
 
 Intégration Système Retail
-~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================
 
 **API REST complète** :
 
@@ -642,10 +643,10 @@ Intégration Système Retail
 * Rapports personnalisables par zone/catégorie/période
 
 Configuration Technique Complète
---------------------------------
+=================================
 
 Environnement de Production
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+============================
 
 **Architecture système recommandée** :
 
@@ -656,57 +657,57 @@ Environnement de Production
 
 **Dépendances logicielles optimisées** :
 
-```
-ultralytics>=8.0.0          # YOLO v8 optimisé
-torch>=2.0.0                # PyTorch avec support CUDA 11.8+
-torchvision>=0.15.0         # Vision transforms optimisés
-opencv-python>=4.8.0       # Computer vision avancé
-scikit-learn>=1.3.0        # ML classique et clustering
-numpy>=1.24.0               # Calculs vectoriels optimisés
-matplotlib>=3.7.0           # Visualisations avancées
-Pillow>=10.0.0              # Manipulation d'images
-pandas>=2.0.0               # Analyse de données
-```
+.. code-block:: text
+
+    ultralytics>=8.0.0          # YOLO v8 optimisé
+    torch>=2.0.0                # PyTorch avec support CUDA 11.8+
+    torchvision>=0.15.0         # Vision transforms optimisés
+    opencv-python>=4.8.0       # Computer vision avancé
+    scikit-learn>=1.3.0        # ML classique et clustering
+    numpy>=1.24.0               # Calculs vectoriels optimisés
+    matplotlib>=3.7.0           # Visualisations avancées
+    Pillow>=10.0.0              # Manipulation d'images
+    pandas>=2.0.0               # Analyse de données
 
 Paramètres de Configuration Avancés
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================
 
 **Configuration complète du système** :
 
-```json
-{
-  "models": {
-    "yolo_products": "individual_products.pt",
-    "yolo_voids": "void_detection_v2.pt",
-    "cnn_classifier": "lightweight_cnn_optimized.pth"
-  },
-  "detection_thresholds": {
-    "yolo_products_confidence": 0.5,
-    "yolo_voids_confidence": 0.4,
-    "cnn_classification_confidence": 0.6
-  },
-  "spatial_analysis": {
-    "neighbor_alignment_tolerance": 50,
-    "spatial_context_weight": 0.4,
-    "proximity_weight": 0.3,
-    "scarcity_weight": 0.3
-  },
-  "clustering": {
-    "dbscan_eps": 100,
-    "min_cluster_size": 2,
-    "max_assignment_distance": 200
-  },
-  "performance": {
-    "batch_size": 16,
-    "gpu_memory_limit": 0.8,
-    "max_image_size": 1920,
-    "processing_timeout": 300
-  }
-}
-```
+.. code-block:: json
+
+    {
+      "models": {
+        "yolo_products": "individual_products.pt",
+        "yolo_voids": "void_detection_v2.pt",
+        "cnn_classifier": "lightweight_cnn_optimized.pth"
+      },
+      "detection_thresholds": {
+        "yolo_products_confidence": 0.5,
+        "yolo_voids_confidence": 0.4,
+        "cnn_classification_confidence": 0.6
+      },
+      "spatial_analysis": {
+        "neighbor_alignment_tolerance": 50,
+        "spatial_context_weight": 0.4,
+        "proximity_weight": 0.3,
+        "scarcity_weight": 0.3
+      },
+      "clustering": {
+        "dbscan_eps": 100,
+        "min_cluster_size": 2,
+        "max_assignment_distance": 200
+      },
+      "performance": {
+        "batch_size": 16,
+        "gpu_memory_limit": 0.8,
+        "max_image_size": 1920,
+        "processing_timeout": 300
+      }
+    }
 
 Métriques de Performance et Monitoring
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=======================================
 
 **KPIs techniques** :
 
@@ -723,10 +724,10 @@ Métriques de Performance et Monitoring
 * **Satisfaction client** : Amélioration de la disponibilité perçue
 
 Évolutions et Perspectives Futures
-----------------------------------
+===================================
 
 Améliorations Techniques Programmées
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=====================================
 
 **Intelligence artificielle avancée** :
 
@@ -743,7 +744,7 @@ Améliorations Techniques Programmées
 * **Auto-scaling** : Adaptation dynamique aux charges variables
 
 Extensions Fonctionnelles Planifiées
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=====================================
 
 **Analyse comportementale** :
 
@@ -762,10 +763,10 @@ Extensions Fonctionnelles Planifiées
 Cette solution hybride représente l'état de l'art en matière de surveillance automatisée des rayons retail. Elle combine la puissance de l'apprentissage automatique, l'intelligence spatiale et l'analyse contextuelle pour offrir une solution complète de gestion des stocks et d'optimisation de la disponibilité produits. L'approche modulaire et extensible garantit son évolutivité face aux défis futurs du retail moderne.
 
 Configuration et Déploiement
-----------------------------
+=============================
 
 Environnement Technique
-~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 **Dépendances système** :
 
@@ -782,7 +783,7 @@ Environnement Technique
 * **CPU** : Processeur multi-core pour preprocessing
 
 Paramètres Configurables
-~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 **Configuration clustering** :
 
@@ -797,7 +798,7 @@ Paramètres Configurables
 * Hyperparamètres : Learning rate, batch size, regularization
 
 Métriques de Suivi
-~~~~~~~~~~~~~~~~~
+===================
 
 **Phase clustering** :
 
@@ -818,10 +819,10 @@ Métriques de Suivi
 * Taux de faux positifs/négatifs
 
 Perspectives d'Évolution
------------------------
+========================
 
 Améliorations Techniques
-~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 **Auto-amélioration** :
 
@@ -842,7 +843,7 @@ Améliorations Techniques
 * Gestion des conditions d'éclairage variables
 
 Extensions Fonctionnelles
-~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 **Multi-modalité** :
 
