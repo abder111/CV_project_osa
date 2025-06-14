@@ -116,28 +116,6 @@ L'implémentation de notre système OSA offre de nombreux avantages mesurables p
 
 Notre solution s'intègre facilement dans l'infrastructure existante grâce à ses interfaces API standardisées et sa conception modulaire. Elle est évolutive et peut s'adapter aux besoins spécifiques de chaque client, qu'il s'agisse d'une petite surface de vente ou d'un hypermarché.
 
-Notre Équipe
-------------
-
-Ce projet innovant a été réalisé par une équipe d'étudiants passionnés par l'intelligence artificielle et ses applications pratiques dans le secteur du retail, sous la supervision d'un expert reconnu dans le domaine.
-
-Membres de l'équipe
-~~~~~~~~~~~~~~~~~~~
-
-- **Es-safi Abderrahman** – AI and Data Technologies Engineering student  
-  Spécialiste en vision par ordinateur et développement de modèles de détection d'objets  
-  `LinkedIn <https://www.linkedin.com/in/abderrahman-es-safi-773739329/>`__
-
-- **Faris Amine** – AI and Data Technologies Engineering student  
-  Expert en traitement de données et développement d'interfaces utilisateur  
-  `LinkedIn <https://www.linkedin.com/in/amine-faris-645096277/>`__
-
-Encadrant du projet
-~~~~~~~~~~~~~~~~~~~
-
-- **Pr. Tawfik Masrour** – Professor, expert IA  
-  Directeur de recherche en intelligence artificielle appliquée et mentor du projet  
-  `LinkedIn <https://www.linkedin.com/in/tawfik-masrour-43163b85/>`__
 
 Technologies Utilisées
 -----------------------
