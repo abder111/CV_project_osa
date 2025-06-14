@@ -4,6 +4,13 @@ Bienvenue dans la documentation de Mon Projet !
 Analyse de la Disponibilité en Rayon (OSA)
 ===========================================
 
+.. figure:: _static/image_presentation.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+
+
 Notre Équipe
 ------------
 
