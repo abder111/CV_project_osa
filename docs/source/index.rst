@@ -38,7 +38,7 @@ Encadrant du projet
 Filiere : IADT-SI
 ~~~~~~~~~
 
-Periode : 06-2025
+Periode : 06-2025 / 01-2025
 ~~~~~~~~~
 .. toctree::
    :maxdepth: 2
