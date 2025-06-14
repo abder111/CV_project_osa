@@ -1,6 +1,9 @@
 Bienvenue dans la documentation de Mon Projet !
 ===============================================
 
+Analyse de la Disponibilité en Rayon (OSA)
+===========================================
+
 .. toctree::
    :maxdepth: 2
    :caption: Sommaire
