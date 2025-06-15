@@ -406,6 +406,22 @@ Détection des produits individuals (sku.pt)
 Dataset de 10k images
 ^^^^^^^^^^^^^^^^^^^^^^
 
+.. list-table:: Performance détection étagères
+   :widths: 30 20 20 20 15
+   :header-rows: 1
+
+   * - Metrique
+     - mAP50
+     - mAP50-95
+     - Précision
+     - Rappel
+   * - Global
+     - 0.916
+     - 0.586
+     - 0.905
+     - 0.845
+
+
 .. figure:: _static/images/sku/sku_matrix.png
    :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
    :width: 80%
@@ -421,6 +437,46 @@ Dataset de 10k images
    Matrice de confusion normalisee YOLOv8 pour la détection des objects
 
 .. figure:: _static/images/sku/sku_results.png
+   :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Les Courbe  d'entrenement YOLOv8 pour la détection des objects.
+
+TF : Moroccan products Dataset 350 images
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: Performance détection étagères
+   :widths: 30 20 20 20 15
+   :header-rows: 1
+
+   * - Metrique
+     - mAP50
+     - mAP50-95
+     - Précision
+     - Rappel
+   * - Global
+     - 0.951
+     - 0.794
+     - 0.91
+     - 0.924
+
+
+.. figure:: _static/images/sku/sku_mp_matrix.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion YOLOv8 pour la détection des objects
+
+.. figure:: _static/images/sku/sku_mp_matrix_nor.png
+   :alt: Matrice de confusion YOLOv8 pour la détection des espaces vides
+   :width: 80%
+   :align: center
+
+   Matrice de confusion normalisee YOLOv8 pour la détection des objects
+
+.. figure:: _static/images/sku/sku_mp_results.png
    :alt: Courbe précision-rappel YOLOv8 pour la détection des espaces vides
    :width: 80%
    :align: center
