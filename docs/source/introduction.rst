@@ -123,11 +123,11 @@ Technologies Utilisées
 Le système OSA s'appuie sur un ensemble de technologies de pointe pour offrir des performances optimales :
 
 - **Frameworks d'IA** : PyTorch, TensorFlow
-- **Vision par ordinateur** : OpenCV, YOLOv8
-- **Traitement des données** : Python, Pandas, NumPy
-- **Interface utilisateur** : React, D3.js
-- **Déploiement** : Docker, Kubernetes
-- **Stockage** : PostgreSQL, Redis
+- **Vision par ordinateur** : OpenCV, YOLOv8,YOLOv11,DTER,CNN
+- **Traitement des données** : Python, Pandas, NumPy,Matplotlib,
+- **Interface utilisateur** : Steamlit
+- **Déploiement** : 
+- **Stockage** : 
 
 Ces technologies ont été sélectionnées pour leur robustesse, leur capacité à traiter des données en temps réel et leur facilité d'intégration dans des environnements commerciaux existants.
  
