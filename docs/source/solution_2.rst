@@ -542,7 +542,7 @@ Métriques de Performance
 * **Temps d'inférence** : < 50ms par image sur GPU standard
 
 Avantages de l'Approche Hybride
-================================
+---------------------------------
 
 Efficacité du Processus d'Annotation
 --------------------------------------
